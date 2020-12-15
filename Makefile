@@ -9,5 +9,8 @@ lint:  ## Lint and static-check
 	pylint in_game_messages --exit-zero
 	mypy in_game_messages
 
+black:
+	black in_game_messages
+
 test:  ## Run tests
 	pytest

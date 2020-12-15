@@ -35,6 +35,7 @@ class Messaging:
     def send_slack_message(
         self, text: str, sender_name: str, parent: str = None
     ) -> Dict:
+        """Send Slack message to the configured channel."""
         try:
             # Call the chat.postMessage method using the WebClient
             result = self.slack_client.chat_postMessage(
@@ -52,6 +53,7 @@ class Messaging:
             return {}
 
     def send_new_messages_to_slack(self) -> None:
+        """Fetch messages from a game and send new ones to Slack."""
         mb = mailbox.mbox(self.mbox_file, create=True)
         message_ids = {}
 
@@ -72,8 +74,6 @@ class Messaging:
 
         if "activity" in resp.json():
             for msg in sorted(resp.json()["activity"], key=lambda x: x["orderid"]):
-                if msg["turn"] > 10:
-                    continue
                 # Create a unique ID for not adding duplicates
                 msg_id = self.construct_msg_id(msg)
 
@@ -123,20 +123,16 @@ class Messaging:
                     )
 
                     if slack_resp:
+                        self.logger.info(
+                            f"Message {msg_id} sent to Slack successfully."
+                        )
                         slack_thread_id = slack_resp["ts"]
                         if self.save_email_message(
-                            mb,
-                            msg["sourcename"],
-                            to_email,
-                            self.planets_game_id,
-                            msg["turn"],
-                            msg["dateadded"],
-                            msg["message"],
-                            msg_id,
-                            slack_thread_id,
+                            mb, msg, to_email, msg_id, slack_thread_id
                         ):
                             message_ids[msg_id] = slack_thread_id
                 else:
+                    self.logger.debug(f"Message {msg_id} already sent.")
                     slack_thread_id = message_ids[msg_id]
 
                 for reply in sorted(msg["_replies"], key=lambda x: x["dateadded"]):
@@ -168,18 +164,17 @@ class Messaging:
                         )
 
                         if slack_reply_resp:
+                            self.logger.info(
+                                f"Reply {reply_id} (parent {msg_id}) sent to Slack successfully."
+                            )
                             if self.save_email_message(
-                                mb,
-                                reply["sourcename"],
-                                to_email,
-                                self.planets_game_id,
-                                reply["turn"],
-                                reply["dateadded"],
-                                reply["message"],
-                                reply_id,
-                                slack_reply_resp["ts"],
+                                mb, reply, to_email, reply_id, slack_reply_resp["ts"]
                             ):
                                 message_ids[reply_id] = slack_thread_id
+                    else:
+                        self.logger.debug(
+                            f"Reply {reply_id} (parent {msg_id}) already sent."
+                        )
         else:
             self.logger.info("No messages found. Response: {resp.json()}")
 
@@ -189,25 +184,24 @@ class Messaging:
     def save_email_message(
         self,
         mb: mailbox.Mailbox,
-        sender: str,
+        message: Dict,
         to: List,
-        game_id: str,
-        turn: str,
-        date: str,
-        body: str,
         msg_id: str,
         thread_id: str,
     ) -> bool:
+        """Construct an e-mail message from an in-game message and save it to a mailbox."""
         try:
             # Construct the message and save to mailbox
             m = email.message.EmailMessage()
-            m["From"] = self.email_from_name(sender, game_id)
+            m["From"] = self.email_from_name(message["sourcename"], message["gameid"])
             m["To"] = ", ".join(list(set(to)))
-            m["Subject"] = f"Turn {turn}"
+            m["Subject"] = f"Turn {message['turn']}"
             m["Message-ID"] = msg_id
             m["X-Slack-ID"] = thread_id
-            m["Date"] = datetime.datetime.strptime(date, "%Y-%m-%dT%H:%M:%S")
-            m.set_content(str(body.replace("<br/>", "\n")))
+            m["Date"] = datetime.datetime.strptime(
+                message["dateadded"], "%Y-%m-%dT%H:%M:%S"
+            )
+            m.set_content(str(message["message"].replace("<br/>", "\n")))
             mb.add(m)
             return True
         except:
@@ -216,17 +210,21 @@ class Messaging:
             return False
 
     def construct_slack_message(_, message: Dict, to: List) -> str:
+        """Construct a Slack message from an in-game message."""
         body = message["message"].replace("<br/>", "\n")
         return f'*Turn {message["turn"]}*\n*To:* {", ".join(list(set(to)))}\n*Date*: {message["dateadded"]}\n\n{body}'
 
     def construct_msg_id(_, message: Dict) -> str:
+        """Construct a unique message ID for an in-game message."""
         return f"<{str(message['id'])}.{str(message['orderid'])}.{str(message['parentid'])}@{message['gameid']}.planets.nu>"
 
     def email_from_name(_, name: str, game_id: str) -> str:
+        """Create a faux e-mail address from an in-game name."""
         email = re.sub(r"\([^()]*\)", "", name)
         return f'"{name}" <{email.replace(" ", "")}@{game_id}.planets.nu>'
 
     def icon_from_name(_, name: str) -> str:
+        """Return an icon URL from in-game name."""
         base_url = "https://mobile.planets.nu/img/"
         race = None
 

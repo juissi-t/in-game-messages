@@ -5,7 +5,7 @@ import logging
 
 import click
 
-from in_game_messages.messaging import SlackMessaging
+from in_game_messages.messaging import Messaging, SlackMessaging
 
 
 @click.command()
@@ -30,12 +30,16 @@ def main(
     else:
         logging.basicConfig(level=logging.INFO)
 
-    logging.info("Sending messages from game %s to Slack.", planets_game_id)
-    messaging = SlackMessaging(
-        slack_bot_token,
-        slack_channel_id,
-    )
-    messaging.send_new_messages_to_slack(
-        planets_api_key, planets_game_id, planets_race_id
-    )
-    logging.info("Messages sent.")
+    logging.info("Fetching messages for game %s.", planets_game_id)
+    messaging = Messaging(planets_api_key)
+    messages = messaging.get_messages_from_game(planets_game_id, planets_race_id)
+    if messages:
+        logging.info("Sending messages from game %s to Slack.", planets_game_id)
+        slack_messaging = SlackMessaging(
+            slack_bot_token,
+            slack_channel_id,
+        )
+        slack_messaging.send_new_messages_to_slack(messages, planets_game_id)
+        logging.info("Messages sent.")
+    else:
+        logging.error("Could not get messages from game %s", planets_game_id)

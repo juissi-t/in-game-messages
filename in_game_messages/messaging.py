@@ -176,7 +176,7 @@ class Messaging:
                             f"Reply {reply_id} (parent {msg_id}) already sent."
                         )
         else:
-            self.logger.info("No messages found. Response: {resp.json()}")
+            self.logger.info(f"No messages found. Response: {resp.json()}")
 
         # Close the mailbox to flush writes
         mb.close()

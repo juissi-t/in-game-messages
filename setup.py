@@ -28,6 +28,6 @@ setup(
     packages=['in_game_messages'],
     package_dir={"": "."},
     package_data={},
-    install_requires=['click==7.*,>=7.1.2', 'setuptools==50.*,>=50.3.2', 'requests==2.25.*,>=2.25.0', 'slack-sdk==3.1.*,>=3.1.0'],
+    install_requires=['click==7.*,>=7.1.2', 'setuptools==51.*,>=51.0.0', 'requests==2.25.*,>=2.25.0', 'slack-sdk==3.1.*,>=3.1.0'],
     extras_require={"dev": ['pytest==6.*,>=6.1.2', 'black==20.*,>=20.8b1']},
 )

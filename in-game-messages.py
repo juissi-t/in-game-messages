@@ -17,6 +17,7 @@ client = WebClient(token=os.environ.get("SLACK_BOT_TOKEN"))
 slack_channel_id = os.environ.get("SLACK_CHANNEL_ID")
 planets_api_key = os.environ.get("PLANETS_API_KEY")
 planets_game_id = os.environ.get("PLANETS_GAME_ID")
+planets_race_id = os.environ.get("PLANETS_RACE_ID")
 mbox_file = f"messages-{planets_game_id}.mbox"
 
 
@@ -220,4 +221,4 @@ def icon_from_name(name: str):
         return f"{base_url}ui/league-logo-400-drop.png"
 
 
-send_new_messages_to_slack(mbox_file, 9, planets_api_key, planets_game_id)
+send_new_messages_to_slack(mbox_file, planets_race_id, planets_api_key, planets_game_id)

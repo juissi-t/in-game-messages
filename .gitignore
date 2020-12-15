@@ -2,3 +2,4 @@
 .vscode/
 messages*.mbox
 .pytest_cache/
+.mypy_cache/

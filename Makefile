@@ -1,3 +1,5 @@
+IMAGE=in-game-messages
+TAG=0.1.0
 .DEFAULT_GOAL := help
 .PHONY: deps lint test
 
@@ -14,3 +16,6 @@ black:
 
 test:  ## Run tests
 	pytest
+
+docker-build:
+	docker build -t $(IMAGE):$(TAG) -f Dockerfile . ; \

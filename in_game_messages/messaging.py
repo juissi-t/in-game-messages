@@ -145,7 +145,7 @@ class SlackMessaging:
                 if reply_id not in message_ids:
                     # Let's not overwhelm Slack API
                     time.sleep(2)
-                    # Remove sender from the recipients list. Don't care if something fails.
+                    # Remove sender from the recipients list. Don't care if it fails.
                     recipients_email = participants_email.copy()
                     recipients = participants.copy()
                     if len(recipients) > 1:
@@ -198,7 +198,7 @@ class SlackMessaging:
         thread_id: str,
         parent_msg_id: str = "",
     ) -> bool:
-        """Construct an e-mail message from an in-game message and save it to a mailbox."""
+        """Construct an e-mail from an in-game message and save it to a mailbox."""
         try:
             # Construct the message and save to mailbox
             msg = email.message.EmailMessage()
@@ -212,8 +212,8 @@ class SlackMessaging:
             )
             msg.set_content(str(message["message"].replace("<br/>", "\n")))
             if parent_msg_id:
-                msg['References'] = parent_msg_id
-                msg['In-Reply-To'] = parent_msg_id
+                msg["References"] = parent_msg_id
+                msg["In-Reply-To"] = parent_msg_id
             mbox.add(msg)
             return True
         except mailbox.Error as err:

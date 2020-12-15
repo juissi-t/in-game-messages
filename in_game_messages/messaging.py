@@ -22,17 +22,9 @@ class SlackMessaging:
         self,
         slack_bot_token: str,
         slack_channel_id: str,
-        planets_api_key: str,
-        planets_game_id: str,
-        planets_race_id: str,
     ) -> None:
         super().__init__()
         self.slack_channel_id = slack_channel_id
-        self.planets_api_key = planets_api_key
-        self.planets_game_id = planets_game_id
-        self.planets_race_id = planets_race_id
-        self.mbox_file = f"messages-{planets_game_id}.mbox"
-
         self.slack_client = WebClient(token=slack_bot_token)
         self.logger = logging.getLogger(__name__)
 
@@ -56,9 +48,11 @@ class SlackMessaging:
             self.logger.error("Error posting message: %s", err)
             raise
 
-    def send_new_messages_to_slack(self) -> None:
+    def send_new_messages_to_slack(
+        self, planets_api_key: str, planets_game_id: str, planets_race_id: str
+    ) -> None:
         """Fetch messages from a game and send new ones to Slack."""
-        mbox = mailbox.mbox(self.mbox_file, create=True)
+        mbox = mailbox.mbox(f"messages-{planets_game_id}.mbox", create=True)
         message_ids = {}
 
         # If the mbox file already exists, find all the message IDs and
@@ -67,9 +61,9 @@ class SlackMessaging:
             message_ids[message["Message-ID"]] = message["X-Slack-ID"]
 
         payload = {
-            "apikey": self.planets_api_key,
-            "gameid": self.planets_game_id,
-            "playerid": self.planets_race_id,
+            "apikey": planets_api_key,
+            "gameid": planets_game_id,
+            "playerid": planets_race_id,
         }
 
         resp = requests.post(
@@ -86,11 +80,11 @@ class SlackMessaging:
 
             # Create a participants list with both sender and recipients
             participants_email = [
-                email_from_name(i.strip(), self.planets_game_id)
+                email_from_name(i.strip(), planets_game_id)
                 for i in msg["targetname"].split(",")
             ]
             participants_email.append(
-                email_from_name(msg["sourcename"], self.planets_game_id)
+                email_from_name(msg["sourcename"], planets_game_id)
             )
             participants = [i.strip() for i in msg["targetname"].split(",")]
             participants.append(msg["sourcename"])
@@ -115,7 +109,7 @@ class SlackMessaging:
                 if len(recipients) > 1:
                     try:
                         recipients_email.remove(
-                            email_from_name(msg["sourcename"], self.planets_game_id)
+                            email_from_name(msg["sourcename"], planets_game_id)
                         )
                         recipients.remove(msg["sourcename"])
                     except ValueError:
@@ -151,9 +145,7 @@ class SlackMessaging:
                     if len(recipients) > 1:
                         try:
                             recipients_email.remove(
-                                email_from_name(
-                                    reply["sourcename"], self.planets_game_id
-                                )
+                                email_from_name(reply["sourcename"], planets_game_id)
                             )
                             recipients.remove(reply["sourcename"])
                         except ValueError:
@@ -186,9 +178,7 @@ class SlackMessaging:
                         "Reply %s (parent %s) already sent.", reply_id, msg_id
                     )
 
-        # Close the mailbox to flush writes
-        mbox.close()
-
+    # pylint: disable=too-many-arguments
     def save_email_message(
         self,
         mbox: mailbox.Mailbox,

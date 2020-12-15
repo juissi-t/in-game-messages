@@ -15,6 +15,7 @@ from in_game_messages.messaging import SlackMessaging
 @click.option("--planets-game-id", type=str, envvar="PLANETS_GAME_ID")
 @click.option("--planets-race-id", type=str, envvar="PLANETS_RACE_ID")
 @click.option("--debug", default=False, is_flag=True)
+# pylint: disable=too-many-arguments
 def main(
     slack_bot_token: str,
     slack_channel_id: str,
@@ -33,9 +34,8 @@ def main(
     messaging = SlackMessaging(
         slack_bot_token,
         slack_channel_id,
-        planets_api_key,
-        planets_game_id,
-        planets_race_id,
     )
-    messaging.send_new_messages_to_slack()
+    messaging.send_new_messages_to_slack(
+        planets_api_key, planets_game_id, planets_race_id
+    )
     logging.info("Messages sent.")

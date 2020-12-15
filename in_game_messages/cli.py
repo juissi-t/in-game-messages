@@ -1,7 +1,11 @@
-from os import name
-from in_game_messages.messaging import Messaging
+# -*- coding: utf-8 -*-
+"""Cli interface for sending in-game messages to Slack."""
+
 import logging
+
 import click
+
+from in_game_messages.messaging import SlackMessaging
 
 
 @click.command()
@@ -19,13 +23,14 @@ def main(
     planets_race_id: str,
     debug: bool,
 ):
+    """Main method for starting up the messages to Slack process."""
     if debug:
         logging.basicConfig(level=logging.DEBUG)
     else:
         logging.basicConfig(level=logging.INFO)
 
-    logging.info(f"Sending messages from game {planets_game_id} to Slack.")
-    messaging = Messaging(
+    logging.info("Sending messages from game %s to Slack.", planets_game_id)
+    messaging = SlackMessaging(
         slack_bot_token,
         slack_channel_id,
         planets_api_key,

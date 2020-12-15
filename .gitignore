@@ -1,3 +1,4 @@
 .env
 .vscode/
 messages*.mbox
+.pytest_cache/

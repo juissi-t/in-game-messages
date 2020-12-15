@@ -29,5 +29,5 @@ setup(
     package_dir={"": "."},
     package_data={},
     install_requires=['click==7.*,>=7.1.2', 'setuptools==51.*,>=51.0.0', 'requests==2.25.*,>=2.25.0', 'slack-sdk==3.1.*,>=3.1.0'],
-    extras_require={"dev": ['pytest==6.*,>=6.1.2', 'black==20.*,>=20.8b1']},
+    extras_require={"dev": ['pytest==6.*,>=6.1.2', 'black==20.*,>=20.8b1', 'pylint==2.6.*,>=2.6.0', 'flake8==3.8.*,>=3.8.4', 'mypy==0.790']},
 )

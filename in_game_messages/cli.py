@@ -5,7 +5,8 @@ import logging
 
 import click
 
-from in_game_messages.messaging import Messaging, SlackMessaging
+from in_game_messages.messaging import Messaging
+from in_game_messages.slack_messaging import SlackMessaging
 
 
 @click.command()

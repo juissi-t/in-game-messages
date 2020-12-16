@@ -81,7 +81,7 @@ Success: no issues found in 4 source files
 
 ## Contributing
 
-If you wish to share your new features and bug fixes, I'd be happy to receive them! Please for this repository and create a [GitHub pull request](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-requests) with your changes. I'll review the pull request and merge it once I'm happy with the contents.
+If you wish to share your new features and bug fixes, I'd be happy to receive them! Please fork this repository and create a [GitHub pull request](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-requests) with your changes. I'll review the pull request and merge it once I'm happy with the contents.
 
 ## Future ideas
 

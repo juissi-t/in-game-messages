@@ -15,7 +15,7 @@ lint:  ## Lint and static-check
 	mypy in_game_messages
 
 black:  ## Format code
-	black in_game_messages
+	black in_game_messages tests
 
 test:  ## Run tests
 	pytest

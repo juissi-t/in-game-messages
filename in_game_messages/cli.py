@@ -25,7 +25,7 @@ def main(
     planets_race_id: str,
     debug: bool,
 ):
-    """Main method for starting up the messages to Slack process."""
+    """Send planets.nu in-game messages to Slack."""
     if debug:
         logging.basicConfig(level=logging.DEBUG)
     else:

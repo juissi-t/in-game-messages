@@ -9,4 +9,6 @@ RUN pip install -U .
 WORKDIR /
 RUN rm -rf /build
 
+WORKDIR /in-game-messages
+
 CMD [ "in-game-messages" ]

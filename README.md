@@ -43,9 +43,41 @@ To install the required development tools ([Black](https://github.com/psf/black)
 
 Run tests (WIP) with `make test`. Make sure they all pass and you don't introduce any bugs in some parts of the codebase. Tests are in the `tests` subdirectory - please add more tests when you add some features.
 
+```console
+% make test
+pytest
+================================= test session starts ==================================
+platform linux -- Python 3.8.6, pytest-6.2.0, py-1.10.0, pluggy-0.13.1
+rootdir: /home/juissi/planets/in-game-messages
+collected 2 items
+
+tests/test_messaging.py ..                                                       [100%]
+
+================================== 2 passed in 0.07s ===================================
+```
+
 Code formatting is done by running `make black`. It will change the files to match the default Black formatting.
 
+```console
+% make black
+black in_game_messages tests
+All done! ✨ 🍰 ✨
+7 files left unchanged.
+```
+
 Run static analysis tools with `make lint`. Ensure there are no errors and the code is rated 10.00, so that you don't accidentally introduce any complexities.
+
+``` console
+% make lint
+flake8 in_game_messages --exit-zero --max-line-length=88
+pylint in_game_messages --exit-zero
+
+--------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
+
+mypy in_game_messages
+Success: no issues found in 4 source files
+```
 
 ## Contributing
 

@@ -32,7 +32,8 @@ class Messaging:
 
         if "activity" in resp.json():
             messages = []
-            for message in sorted(resp.json()["activity"], key=lambda x: x["orderid"]):
+            activity = resp.json()["activity"]
+            for message in sorted(activity, key=lambda x: x["dateadded"]):
                 message["msgid"] = self.construct_msg_id(message)
                 participants = self.get_message_participants(message)
                 # Remove sender from the recipients list. Don't care if something fails.
@@ -72,7 +73,7 @@ class Messaging:
         messages = []
         for race_id in self.get_race_ids_for_game(planets_game_id):
             messages.append(self.get_messages_from_game(planets_game_id, race_id))
-        return sorted(messages, key=lambda x: x["orderid"])
+        return sorted(messages, key=lambda x: x["dateadded"])
 
     def get_race_ids_for_game(self, planets_game_id: str) -> List:
         """Get race IDs from a game."""

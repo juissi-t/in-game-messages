@@ -105,9 +105,8 @@ class Messaging:
     def construct_msg_id(message: Dict) -> str:
         """Construct a unique message ID for an in-game message."""
         msg_id = str(message["id"])
-        order_id = str(message["orderid"])
         parent_id = str(message["parentid"])
-        return f"<{msg_id}.{order_id}.{parent_id}@{message['gameid']}.planets.nu>"
+        return f"<{msg_id}.{parent_id}@{message['gameid']}.planets.nu>"
 
     @staticmethod
     def email_from_name(name: str, game_id: str) -> str:

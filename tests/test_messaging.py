@@ -28,4 +28,4 @@ def test_email_from_name():
 
 def test_construct_msg_id(message_no_replies):
     msg_id = Messaging.construct_msg_id(message_no_replies)
-    assert msg_id == "<4847926.637296058433225700.0@374955.planets.nu>"
+    assert msg_id == "<4847926.0@374955.planets.nu>"

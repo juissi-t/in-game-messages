@@ -90,3 +90,13 @@ def message_no_replies():
 }
     """
     return json.loads(json_message)
+
+
+@pytest.fixture
+def all_messages(message_with_reply, message_no_replies):
+    return {"activity": [message_no_replies, message_with_reply]}
+
+
+@pytest.fixture
+def no_messages():
+    return {}

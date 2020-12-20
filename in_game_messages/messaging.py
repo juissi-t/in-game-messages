@@ -72,7 +72,7 @@ class Messaging:
         """Get messages for all races from a game."""
         messages = []
         for race_id in self.get_race_ids_for_game(planets_game_id):
-            messages.append(self.get_messages_from_game(planets_game_id, race_id))
+            messages += self.get_messages_from_game(planets_game_id, race_id)
         return sorted(messages, key=lambda x: x["dateadded"])
 
     def get_race_ids_for_game(self, planets_game_id: str) -> List:

@@ -32,6 +32,9 @@ class SlackMessaging:
     ) -> SlackResponse:
         """Send Slack message to the configured channel."""
         try:
+            send_to_channel = False
+            if parent:
+                send_to_channel = True
             # Call the chat.postMessage method using the WebClient
             result = self.slack_client.chat_postMessage(
                 channel=self.slack_channel_id,
@@ -39,6 +42,7 @@ class SlackMessaging:
                 username=sender_name,
                 icon_url=self.icon_from_name(sender_name),
                 thread_ts=parent,
+                reply_broadcast=send_to_channel,
             )
             self.logger.debug(result)
             return result

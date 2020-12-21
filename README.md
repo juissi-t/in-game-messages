@@ -41,7 +41,7 @@ Options:
 
 To install the required development tools ([Black](https://github.com/psf/black) for code formatting, [pytest](https://docs.pytest.org/en/stable/) for running tests, [pylint](https://www.pylint.org/), [flake8](https://flake8.pycqa.org/en/latest/) and [mypy](http://mypy-lang.org/) for static analysis), run `make install-dev`.
 
-Run tests (WIP) with `make test`. Make sure they all pass and you don't introduce any bugs in some parts of the codebase. Tests are in the `tests` subdirectory - please add more tests when you add some features.
+Run tests with `make test`. Make sure they all pass and you don't introduce any bugs in some parts of the codebase. Tests are in the `tests` subdirectory - please add more tests when you add some features.
 
 ```console
 % make test
@@ -49,11 +49,12 @@ pytest
 ================================= test session starts ==================================
 platform linux -- Python 3.8.6, pytest-6.2.0, py-1.10.0, pluggy-0.13.1
 rootdir: /home/juissi/planets/in-game-messages
-collected 2 items
+collected 14 items
 
-tests/test_messaging.py ..                                                       [100%]
+tests/test_messaging.py ........                                                 [ 57%]
+tests/test_slack_messaging.py ......                                             [100%]
 
-================================== 2 passed in 0.07s ===================================
+================================== 14 passed in 0.10s ==================================
 ```
 
 Code formatting is done by running `make black`. It will change the files to match the default Black formatting.
@@ -62,7 +63,7 @@ Code formatting is done by running `make black`. It will change the files to mat
 % make black
 black in_game_messages tests
 All done! ✨ 🍰 ✨
-7 files left unchanged.
+8 files left unchanged.
 ```
 
 Run static analysis tools with `make lint`. Ensure there are no errors and the code is rated 10.00, so that you don't accidentally introduce any complexities.
@@ -87,10 +88,11 @@ If you wish to share your new features and bug fixes, I'd be happy to receive th
 
 Here's an unordered list of future improvements to the project:
 
-- Add [GitHub Actions](https://docs.github.com/en/free-pro-team@latest/actions) to ensure code quality with continuous integration.
+- Add some annotating [GitHub Actions](https://docs.github.com/en/free-pro-team@latest/actions) for `pytest`, `pylint`, `flake8` and `mypy` to ensure code quality with continuous integration and to automatically comment on pull requests when there are issues.
 - Package the project as a Python package and publish in GitHub.
 - Create a utility class for sending in-game messages.
 - More command-line commands for different purposes, e.g. for downloading messages for a game in mbox format or sending to other messaging systems than Slack.
 - Running the tool continuously for multiple games, sending messages to game-specific channels.
 - Support for logging in to Planets Nu API instead of using API key directly.
+- Refactor mailbox handling to its own class.
 - Better comments, documenting the classes.

@@ -44,9 +44,13 @@ class Messaging:
                     except KeyError:
                         pass
                 message["recipients"] = recipients
-                message["sender"] = self.email_from_name(
-                    message["sourcename"], message["gameid"]
-                )
+                message["sender"] = {
+                    "name": message["sourcename"],
+                    "email": self.email_from_name(
+                        message["sourcename"], message["gameid"]
+                    ),
+                    "icons": self.icon_from_message(message),
+                }
                 message["replies"] = []
                 for reply in message["_replies"]:
                     reply["parentmsgid"] = message["msgid"]
@@ -58,9 +62,13 @@ class Messaging:
                         except KeyError:
                             pass
                     reply["recipients"] = reply_recipients
-                    reply["sender"] = self.email_from_name(
-                        reply["sourcename"], reply["gameid"]
-                    )
+                    reply["sender"] = {
+                        "name": reply["sourcename"],
+                        "email": self.email_from_name(
+                            reply["sourcename"], reply["gameid"]
+                        ),
+                        "icons": self.icon_from_message(reply),
+                    }
                     message["replies"].append(reply)
                 messages.append(message)
             return messages
@@ -114,3 +122,41 @@ class Messaging:
         """Create a faux e-mail address from an in-game name."""
         address = re.sub(r"\([^()]*\)", "", name)
         return f'"{name}" <{address.replace(" ", "")}@{game_id}.planets.nu>'
+
+    @staticmethod
+    def icon_from_message(message: Dict) -> Dict:
+        """Return an icon URL from in-game name."""
+        base_url = "https://mobile.planets.nu/img/"
+        races = {
+            "The Feds": "1",
+            "The Lizards": "2",
+            "The Bird Men": "3",
+            "The Fascists": "4",
+            "The Privateers": "5",
+            "The Cyborg": "6",
+            "The Crystals": "7",
+            "The Evil Empire": "8",
+            "The Robots": "9",
+            "The Rebels": "10",
+            "The Colonies": "11",
+            "The Horwasp": "12",
+        }
+
+        sender_id = (
+            None
+            if message["sourcename"] == message["gamename"]
+            else f"https://profiles2.planets.nu/{message['sourceid']}"
+        )
+
+        icons = {
+            "league": f"{base_url}ui/league-logo-400-drop.png",
+            "player": sender_id,
+            "race": None,
+        }
+
+        for race_name, race_id in races.items():
+            if message["sourcename"].endswith(f"({race_name})"):
+                icons["race"] = f"{base_url}races/race-{race_id}.jpg"
+                break
+
+        return icons

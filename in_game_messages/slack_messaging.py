@@ -28,23 +28,40 @@ class SlackMessaging:
         self.logger = logging.getLogger(__name__)
 
     def send_slack_message(
-        self, text: str, sender_name: str, parent: str = None
+        self, text: str, sender: Dict, parent: str = None
     ) -> SlackResponse:
         """Send Slack message to the configured channel."""
         try:
-            send_to_channel = False
-            if parent:
-                send_to_channel = True
+            icon = sender["icons"]["league"]
+            if sender["icons"]["race"]:
+                icon = sender["icons"]["race"]
+            elif sender["icons"]["player"]:
+                icon = sender["icons"]["player"]
+
             # Call the chat.postMessage method using the WebClient
             result = self.slack_client.chat_postMessage(
                 channel=self.slack_channel_id,
                 text=text,
-                username=sender_name,
-                icon_url=self.icon_from_name(sender_name),
+                username=sender["name"],
+                icon_url=icon,
                 thread_ts=parent,
-                reply_broadcast=send_to_channel,
             )
             self.logger.debug(result)
+
+            if parent:
+                time.sleep(1)
+                child_pl = self.slack_client.chat_getPermalink(
+                    channel=self.slack_channel_id, message_ts=result["ts"]
+                )
+                text = f"<{child_pl['permalink']}|New message in thread>"
+                channel_result = self.slack_client.chat_postMessage(
+                    channel=self.slack_channel_id,
+                    text=text,
+                    username=sender["name"],
+                    icon_url=icon,
+                )
+                self.logger.debug(channel_result)
+
             return result
 
         except SlackApiError as err:
@@ -79,7 +96,7 @@ class SlackMessaging:
                     # Construct the Slack message and send it
                     slack_resp = self.send_slack_message(
                         self.construct_slack_message(msg),
-                        msg["sourcename"],
+                        msg["sender"],
                     )
 
                     if slack_resp:
@@ -101,7 +118,7 @@ class SlackMessaging:
                     # Construct the Slack message and send it
                     slack_reply_resp = self.send_slack_message(
                         self.construct_slack_message(reply),
-                        reply["sourcename"],
+                        reply["sender"],
                         slack_thread_id,
                     )
 
@@ -134,7 +151,7 @@ class SlackMessaging:
         try:
             # Construct the message and save to mailbox
             msg = email.message.EmailMessage()
-            msg["From"] = message["sender"]
+            msg["From"] = message["sender"]["email"]
             msg["To"] = ", ".join(message["recipients"].values())
             msg["Subject"] = f"Turn {message['turn']}"
             msg["Message-ID"] = message["msgid"]
@@ -160,28 +177,3 @@ class SlackMessaging:
         date_str = f'*Date*: {message["dateadded"]}'
         body_str = message["message"].replace("<br/>", "\n")
         return f"{turn_str}\n{to_str}\n{date_str}\n\n{body_str}"
-
-    @staticmethod
-    def icon_from_name(name: str) -> str:
-        """Return an icon URL from in-game name."""
-        base_url = "https://mobile.planets.nu/img/"
-        races = {
-            "The Feds": 1,
-            "The Lizards": 2,
-            "The Bird Men": 3,
-            "The Fascists": 4,
-            "The Privateers": 5,
-            "The Cyborg": 6,
-            "The Crystals": 7,
-            "The Evil Empire": 8,
-            "The Robots": 9,
-            "The Rebels": 10,
-            "The Colonies": 11,
-            "The Horwasp": 12,
-        }
-
-        for race_name, race_id in races.items():
-            if name.endswith(f"({race_name})"):
-                return f"{base_url}races/race-{str(race_id)}.jpg"
-
-        return f"{base_url}ui/league-logo-400-drop.png"

@@ -109,5 +109,11 @@ def test_construct_msg_id(message_no_replies):
     assert msg_id == "<4847926.0@374955.planets.nu>"
 
 
-def test_icon_from_message():
-    pass
+def test_icon_from_message(message_no_replies):
+    icons = Messaging.icon_from_message(message_no_replies)
+    assert len(icons) == 3
+    assert (
+        icons["league"] == "https://mobile.planets.nu/img/ui/league-logo-400-drop.png"
+    )
+    assert icons["player"] == "https://profiles2.planets.nu/5635"
+    assert icons["race"] == "https://mobile.planets.nu/img/races/race-2.jpg"

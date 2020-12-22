@@ -100,3 +100,16 @@ def all_messages(message_with_reply, message_no_replies):
 @pytest.fixture
 def no_messages():
     return {}
+
+
+@pytest.fixture
+def sender():
+    return {
+        "name": "tom n (The Lizards)",
+        "icons": {
+            "league": "https://1",
+            "player": None,
+            "race": "https://2",
+        },
+        "email": '"tom n (The Lizards)" <tomn@374955.planets.nu>',
+    }

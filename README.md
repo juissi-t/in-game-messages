@@ -94,5 +94,4 @@ Here's an unordered list of future improvements to the project:
 - More command-line commands for different purposes, e.g. for downloading messages for a game in mbox format or sending to other messaging systems than Slack.
 - Running the tool continuously for multiple games, sending messages to game-specific channels.
 - Support for logging in to Planets Nu API instead of using API key directly.
-- Refactor mailbox handling to its own class.
 - Better comments, documenting the classes.

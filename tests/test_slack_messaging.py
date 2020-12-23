@@ -4,18 +4,6 @@ from slack_sdk.errors import SlackApiError
 from in_game_messages.slack_messaging import SlackMessaging
 
 
-@pytest.fixture
-def sender():
-    return {
-        "name": "tom n (The Lizards)",
-        "icons": {
-            "league": "https://1",
-            "player": None,
-            "race": "https://2",
-        },
-    }
-
-
 def test_send_slack_message(monkeypatch, sender):
     def mock_post_message(*args, **kwargs):
         return {"ts": "1"}

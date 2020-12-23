@@ -3,27 +3,23 @@
 
 import logging
 
-import click
+import typer
 
 from in_game_messages.messaging import Messaging
 from in_game_messages.slack_messaging import SlackMessaging
 
+app = typer.Typer()
 
-@click.command()
-@click.option("--slack-bot-token", type=str, envvar="SLACK_BOT_TOKEN", required=True)
-@click.option("--slack-channel-id", type=str, envvar="SLACK_CHANNEL_ID", required=True)
-@click.option("--planets-api-key", type=str, envvar="PLANETS_API_KEY", required=True)
-@click.option("--planets-game-id", type=str, envvar="PLANETS_GAME_ID", required=True)
-@click.option("--planets-race-id", type=str, envvar="PLANETS_RACE_ID", required=True)
-@click.option("--debug", default=False, is_flag=True)
+
+@app.command()
 # pylint: disable=too-many-arguments
 def main(
-    slack_bot_token: str,
-    slack_channel_id: str,
-    planets_api_key: str,
-    planets_game_id: str,
-    planets_race_id: str,
-    debug: bool,
+    slack_bot_token: str = typer.Option(..., envvar="SLACK_BOT_TOKEN"),
+    slack_channel_id: str = typer.Option(..., envvar="SLACK_CHANNEL_ID"),
+    planets_api_key: str = typer.Option(..., envvar="PLANETS_API_KEY"),
+    planets_game_id: str = typer.Option(..., envvar="PLANETS_GAME_ID"),
+    planets_race_id: str = typer.Option(..., envvar="PLANETS_RACE_ID"),
+    debug: bool = False,
 ):
     """Send planets.nu in-game messages to Slack."""
     if debug:

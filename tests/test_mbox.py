@@ -9,7 +9,7 @@ def test_get_message_ids(tmp_path, message_no_replies, sender):
         "coen1970 (The Colonies)": '"coen1970 (The Colonies)" <coen1970@374955.planets.nu>'
     }
     message_no_replies["msgid"] = "<4847926.0@374955.planets.nu>"
-    mbox.save_email_message(message_no_replies, "1")
+    mbox.save_email_message(message_no_replies)
     message_ids = mbox.get_message_ids()
     assert len(message_ids) == 1
     assert "<4847926.0@374955.planets.nu>" in message_ids
@@ -22,7 +22,7 @@ def test_save_email_message(tmp_path, message_no_replies, sender):
         "coen1970 (The Colonies)": '"coen1970 (The Colonies)" <coen1970@374955.planets.nu>'
     }
     message_no_replies["msgid"] = "<4847926.0@374955.planets.nu>"
-    mbox.save_email_message(message_no_replies, "1")
+    mbox.save_email_message(message_no_replies)
     mailbox_mbox = mailbox.mbox(tmp_path / "mbox")
     assert mailbox_mbox.__len__() == 1
     _, message = mailbox_mbox.popitem()

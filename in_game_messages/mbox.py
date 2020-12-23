@@ -30,7 +30,7 @@ class Mbox:
     def save_email_message(
         self,
         message: Dict,
-        thread_id: str,
+        thread_id: str = None,
     ) -> bool:
         """Construct an e-mail from an in-game message and save it to a mailbox."""
         try:

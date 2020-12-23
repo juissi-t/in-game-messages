@@ -24,15 +24,16 @@ setup(
     python_requires="==3.*,>=3.8.0",
     author="Juha Tiensyrjä",
     author_email="juha.tiensyrja@gmail.com",
-    entry_points={"console_scripts": ["in-game-messages = in_game_messages.cli:main"]},
+    entry_points={"console_scripts": ["in-game-messages = in_game_messages.cli:app"]},
     packages=["in_game_messages"],
     package_dir={"": "."},
     package_data={},
     install_requires=[
-        "click==7.*,>=7.1.2",
+        "typer==0.3.*,>=0.3.2",
         "setuptools==51.*,>=51.0.0",
         "requests==2.25.*,>=2.25.0",
         "slack-sdk==3.1.*,>=3.1.0",
+        "shellingham==1.3.*,>=1.3.2",
     ],
     extras_require={
         "dev": [

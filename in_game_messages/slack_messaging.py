@@ -68,9 +68,13 @@ class SlackMessaging:
             self.logger.error("Error posting message: %s", err)
             raise
 
-    def send_new_messages_to_slack(self, messages: List, planets_game_id: str) -> None:
+    def send_new_messages_to_slack(
+        self, messages: List, planets_game_id: str, mbox_path: Path = None
+    ) -> None:
         """Fetch messages from a game and send new ones to Slack."""
-        mbox = Mbox(Path(f"messages-{planets_game_id}.mbox"))
+        if not mbox_path:
+            mbox_path = Path(f"messages-{planets_game_id}.mbox")
+        mbox = Mbox(mbox_path)
         message_ids = mbox.get_message_ids()
 
         for msg in messages:

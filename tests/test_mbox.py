@@ -1,4 +1,5 @@
 import mailbox
+
 from in_game_messages.mbox import Mbox
 
 

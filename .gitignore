@@ -1,6 +1,7 @@
 .env
 .vscode/
 messages*.mbox
+messages*.csv
 .pytest_cache/
 .mypy_cache/
 __pycache__

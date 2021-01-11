@@ -21,7 +21,7 @@ setup(
     name="in-game-messages",
     version="0.1.0",
     description="Send planets.nu in-game messages to Slack",
-    python_requires="==3.*,>=3.8.0",
+    python_requires="==3.*,>=3.7.9",
     author="Juha Tiensyrjä",
     author_email="juha.tiensyrja@gmail.com",
     entry_points={"console_scripts": ["in-game-messages = in_game_messages.cli:app"]},
@@ -34,6 +34,7 @@ setup(
         "requests==2.25.*,>=2.25.0",
         "slack-sdk==3.1.*,>=3.1.0",
         "shellingham==1.3.*,>=1.3.2",
+        "wheel==0.36.*,>=0.36.2",
     ],
     extras_require={
         "dev": [

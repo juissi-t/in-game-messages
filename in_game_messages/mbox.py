@@ -41,6 +41,8 @@ class Mbox:
             msg["Subject"] = f"Turn {message['turn']}"
             msg["Message-ID"] = message["msgid"]
             msg["X-Slack-ID"] = thread_id
+            msg["Thread-Index"] = message["threadindex"]
+            msg["Thread-Topic"] = message["threadtopic"]
             msg["Date"] = datetime.datetime.strptime(
                 message["dateadded"], "%Y-%m-%dT%H:%M:%S"
             )

@@ -4,7 +4,7 @@ This project aims to provide some utilities to make it easier to consume [Planet
 
 ## Installing the utilities
 
-[Python](https://www.python.org/) version 3.8 or above is required.
+[Python](https://www.python.org/) version 3.7.9 or above is required.
 
 To install the `in-game-messages` command line tool, clone this repository first. Then, if you have `make` installed, run `make install` in the repository directory. Else, run `pip install -U .`.
 

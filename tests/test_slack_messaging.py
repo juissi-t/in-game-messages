@@ -2,13 +2,23 @@ import mailbox
 
 import pytest
 import requests
+import time
+
 from in_game_messages.messaging import Messaging
 from in_game_messages.slack_messaging import SlackMessaging
 from slack_sdk.errors import SlackApiError
 from slack_sdk.web.client import WebClient
 
 
-def test_send_slack_message(monkeypatch, sender):
+@pytest.fixture
+def sleepless(monkeypatch):
+    def sleep(seconds):
+        pass
+
+    monkeypatch.setattr(time, "sleep", sleep)
+
+
+def test_send_slack_message(monkeypatch, sender, sleepless):
     def mock_post_message(*args, **kwargs):
         return {"ts": "1"}
 
@@ -18,7 +28,7 @@ def test_send_slack_message(monkeypatch, sender):
     assert result["ts"] == "1"
 
 
-def test_send_slack_message_with_parent(monkeypatch, sender):
+def test_send_slack_message_with_parent(monkeypatch, sender, sleepless):
     def mock_post_message(*args, **kwargs):
         return {"ts": "2"}
 
@@ -33,7 +43,7 @@ def test_send_slack_message_with_parent(monkeypatch, sender):
     assert result["ts"] == "2"
 
 
-def test_send_slack_message_error(monkeypatch, sender):
+def test_send_slack_message_error(monkeypatch, sender, sleepless):
     def mock_post_message(*args, **kwargs):
         raise SlackApiError(message="Test exception", response=400)
 
@@ -45,7 +55,7 @@ def test_send_slack_message_error(monkeypatch, sender):
     assert "Test exception" in str(excinfo.value)
 
 
-def test_send_new_messages_to_slack(monkeypatch, tmp_path, all_messages):
+def test_send_new_messages_to_slack(monkeypatch, tmp_path, all_messages, sleepless):
     class MockResponseMessages:
         @staticmethod
         def json():

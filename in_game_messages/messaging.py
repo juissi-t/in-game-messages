@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
 """Messaging module and helper utilities for fetching in-game messages."""
 
+import base64
+import hashlib
 import logging
 import re
+import struct
+from datetime import datetime, timedelta
 from typing import Dict, List
 
 import requests
@@ -35,6 +39,8 @@ class Messaging:
             activity = resp.json()["activity"]
             for message in sorted(activity, key=lambda x: x["dateadded"]):
                 message["msgid"] = self.construct_msg_id(message)
+                message["threadindex"] = self.construct_outlook_thread_index(message)
+                message["threadtopic"] = f"Turn {message['turn']}"
                 participants = self.get_message_participants(message)
                 # Remove sender from the recipients list. Don't care if something fails.
                 recipients = participants.copy()
@@ -54,6 +60,10 @@ class Messaging:
                 message["replies"] = []
                 for reply in message["_replies"]:
                     reply["parentmsgid"] = message["msgid"]
+                    reply["threadindex"] = self.construct_outlook_thread_index(
+                        reply, message["threadindex"]
+                    )
+                    reply["threadtopic"] = message["threadtopic"]
                     reply["msgid"] = self.construct_msg_id(reply)
                     reply_recipients = participants.copy()
                     if len(reply_recipients) > 1:
@@ -109,6 +119,55 @@ class Messaging:
             message["sourcename"], message["gameid"]
         )
         return participants
+
+    @staticmethod
+    def construct_outlook_thread_index(
+        message: Dict, parent_thread_index: str = None
+    ) -> str:
+        """Construct a thread index to allow threading in Outlook."""
+        thread_index = ""
+        if "thread-index" in message:
+            thread_index = message["thread-index"]
+
+        if parent_thread_index and not thread_index:
+            # Construct a thread index using parent index as base
+            parent_bytes = base64.b64decode(parent_thread_index)
+
+            # Calculate the first 6 bytes to get parent thread filetime
+            filetime = struct.unpack(">Q", parent_bytes[0:6] + b"\0\0")[0]
+            parent_ts = datetime(1601, 1, 1) + timedelta(microseconds=filetime // 10)
+
+            # Find out time difference in microseconds between parent message and reply
+            message_td = (
+                datetime.strptime(message["dateadded"], "%Y-%m-%dT%H:%M:%S") - parent_ts
+            )
+            message_td_bin = f"{int(message_td.total_seconds() * 10000000):064b}"
+
+            # Convert to binary string, then bytes, and finally pack all together
+            message_ft_bytes = int(
+                "0" + message_td_bin[15:46] + "00110001", 2
+            ).to_bytes(5, byteorder="big")
+            thread_index_bytes = struct.pack(">22s5s", parent_bytes, message_ft_bytes)
+
+            # Base64 encode and return as a string
+            thread_index = str(base64.b64encode(thread_index_bytes), "utf-8")
+
+        elif not thread_index:
+            # Construct a new thread index based on the message timestamp
+            dateadded = datetime.strptime(message["dateadded"], "%Y-%m-%dT%H:%M:%S")
+            # Convert to FILETIME epoch (microseconds since 1601) and get first 6 bytes
+            delta = datetime(1970, 1, 1) - datetime(1601, 1, 1)
+            filetime = int(dateadded.timestamp() + delta.total_seconds()) * 10000000
+            filetime_bytes = struct.pack(">Q", filetime)[:6]
+
+            # Generate a md5 hash of the message ID and append to the thread index
+            guid = hashlib.md5(str(message["id"]).encode("utf-8")).digest()
+            thread_index_bytes = filetime_bytes + guid
+
+            # Base64 encode and return as a string
+            thread_index = str(base64.b64encode(thread_index_bytes), "utf-8")
+
+        return thread_index
 
     @staticmethod
     def construct_msg_id(message: Dict) -> str:

@@ -113,3 +113,16 @@ def sender():
         },
         "email": '"tom n (The Lizards)" <tomn@374955.planets.nu>',
     }
+
+
+@pytest.fixture
+def full_message(message_no_replies, sender):
+    message_no_replies["sender"] = sender
+    message_no_replies["recipients"] = {
+        "coen1970 (The Colonies)": '"coen1970 (The Colonies)" <coen1970@374955.planets.nu>'
+    }
+    message_no_replies["msgid"] = "<4847926.0@374955.planets.nu>"
+    message_no_replies["threadindex"] = "test"
+    message_no_replies["threadtopic"] = "test"
+    message_no_replies["replies"] = []
+    return message_no_replies

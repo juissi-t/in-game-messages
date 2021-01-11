@@ -109,6 +109,15 @@ def test_construct_msg_id(message_no_replies):
     assert msg_id == "<4847926.0@374955.planets.nu>"
 
 
+def test_construct_outlook_thread_index(message_with_reply):
+    messaging = Messaging("abcd")
+    thread_index = messaging.construct_outlook_thread_index(message_with_reply)
+    assert thread_index == "AdZAVRhpui+pCroMkYwvKHLiyERMhA=="
+    reply = message_with_reply["_replies"][0]
+    reply_thread_index = messaging.construct_outlook_thread_index(reply, thread_index)
+    assert reply_thread_index == "AdZAVRhpui+pCroMkYwvKHLiyERMhAAJ7A0x"
+
+
 def test_icon_from_message(message_no_replies):
     icons = Messaging.icon_from_message(message_no_replies)
     assert len(icons) == 3

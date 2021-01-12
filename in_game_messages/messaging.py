@@ -6,7 +6,7 @@ import hashlib
 import logging
 import re
 import struct
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Dict, List
 
 import requests
@@ -135,11 +135,15 @@ class Messaging:
 
             # Calculate the first 6 bytes to get parent thread filetime
             filetime = struct.unpack(">Q", parent_bytes[0:6] + b"\0\0")[0]
-            parent_ts = datetime(1601, 1, 1) + timedelta(microseconds=filetime // 10)
+            parent_ts = datetime(1601, 1, 1, tzinfo=timezone.utc) + timedelta(
+                microseconds=filetime // 10
+            )
 
             # Find out time difference in microseconds between parent message and reply
             message_td = (
-                datetime.strptime(f"{message['dateadded']}UTC", "%Y-%m-%dT%H:%M:%S%Z")
+                datetime.strptime(
+                    f"{message['dateadded']}UTC", "%Y-%m-%dT%H:%M:%S%Z"
+                ).replace(tzinfo=timezone.utc)
                 - parent_ts
             )
             message_td_bin = f"{int(message_td.total_seconds() * 10000000):064b}"
@@ -157,9 +161,11 @@ class Messaging:
             # Construct a new thread index based on the message timestamp
             dateadded = datetime.strptime(
                 f"{message['dateadded']}UTC", "%Y-%m-%dT%H:%M:%S%Z"
-            )
+            ).replace(tzinfo=timezone.utc)
             # Convert to FILETIME epoch (microseconds since 1601) and get first 6 bytes
-            delta = datetime(1970, 1, 1) - datetime(1601, 1, 1)
+            delta = datetime(1970, 1, 1, tzinfo=timezone.utc) - datetime(
+                1601, 1, 1, tzinfo=timezone.utc
+            )
             filetime = int(dateadded.timestamp() + delta.total_seconds()) * 10000000
             filetime_bytes = struct.pack(">Q", filetime)[:6]
 

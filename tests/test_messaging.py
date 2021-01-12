@@ -112,10 +112,10 @@ def test_construct_msg_id(message_no_replies):
 def test_construct_outlook_thread_index(message_with_reply):
     messaging = Messaging("abcd")
     thread_index = messaging.construct_outlook_thread_index(message_with_reply)
-    assert thread_index == "AdZAVRhpui+pCroMkYwvKHLiyERMhA=="
+    assert thread_index == "AdZAbj23ui+pCroMkYwvKHLiyERMhA=="
     reply = message_with_reply["_replies"][0]
     reply_thread_index = messaging.construct_outlook_thread_index(reply, thread_index)
-    assert reply_thread_index == "AdZAVRhpui+pCroMkYwvKHLiyERMhAAJ7A0x"
+    assert reply_thread_index == "AdZAbj23ui+pCroMkYwvKHLiyERMhAADorox"
 
 
 def test_icon_from_message(message_no_replies):

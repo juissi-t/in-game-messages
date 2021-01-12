@@ -139,7 +139,8 @@ class Messaging:
 
             # Find out time difference in microseconds between parent message and reply
             message_td = (
-                datetime.strptime(message["dateadded"], "%Y-%m-%dT%H:%M:%S") - parent_ts
+                datetime.strptime(f"{message['dateadded']}UTC", "%Y-%m-%dT%H:%M:%S%Z")
+                - parent_ts
             )
             message_td_bin = f"{int(message_td.total_seconds() * 10000000):064b}"
 
@@ -154,7 +155,9 @@ class Messaging:
 
         elif not thread_index:
             # Construct a new thread index based on the message timestamp
-            dateadded = datetime.strptime(message["dateadded"], "%Y-%m-%dT%H:%M:%S")
+            dateadded = datetime.strptime(
+                f"{message['dateadded']}UTC", "%Y-%m-%dT%H:%M:%S%Z"
+            )
             # Convert to FILETIME epoch (microseconds since 1601) and get first 6 bytes
             delta = datetime(1970, 1, 1) - datetime(1601, 1, 1)
             filetime = int(dateadded.timestamp() + delta.total_seconds()) * 10000000

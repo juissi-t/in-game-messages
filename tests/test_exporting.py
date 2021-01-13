@@ -11,7 +11,8 @@ def test_to_csv(tmp_path, full_message):
     with open(tmp_path / "csv", "r") as f:
         for _ in f:
             count += 1
-    assert count == 2
+    # We should have 6 lines because the message contains newlines
+    assert count == 6
 
 
 def test_to_mbox(tmp_path, full_message):

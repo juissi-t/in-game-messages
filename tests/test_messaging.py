@@ -55,7 +55,8 @@ def test_get_all_messages_from_game(monkeypatch, all_messages):
     messaging = Messaging("abcd")
     messages = messaging.get_all_messages_from_game("1234")
     assert isinstance(messages, list)
-    assert len(messages) == 4
+    # After deduping the list, we should have just two messages left
+    assert len(messages) == 2
 
 
 def test_get_race_ids_for_game(monkeypatch):

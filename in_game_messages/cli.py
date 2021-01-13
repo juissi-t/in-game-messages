@@ -68,7 +68,12 @@ def csv(
     """Export planets.nu in-game messages to a CSV (comma-separated values) file."""
     logging.info("Fetching messages for game %s.", planets["game_id"])
     messaging = Messaging(planets["api_key"])
-    messages = messaging.get_messages_from_game(planets["game_id"], planets["race_id"])
+    if planets["race_id"]:
+        messages = messaging.get_messages_from_game(
+            planets["game_id"], planets["race_id"]
+        )
+    else:
+        messages = messaging.get_all_messages_from_game(planets["game_id"])
     if messages:
         logging.info("Saving messages from game %s to %s.", planets["game_id"], outfile)
         exporting = Exporting()
@@ -154,9 +159,9 @@ def get_running_games(apikey: str) -> Dict:
     """Return a list of running games for a user."""
     payload = {"apikey": apikey}
     response = requests.post("https://api.planets.nu/account/mygames", data=payload)
-    games = {}
     if response.status_code == 200:
         json_doc = response.json()
+        games = {}
         if "games" in json_doc:
             for game in json_doc["games"]:
                 if game["game"]["statusname"] == "Running":
@@ -164,13 +169,18 @@ def get_running_games(apikey: str) -> Dict:
                         "name": game["game"]["name"],
                         "race": game["player"]["id"],
                     }
-    return games
+        return games
+    logging.error("Failed to get running games from planets.nu.")
+    raise typer.Exit()
 
 
 def _mbox(game_id: str, api_key: str, race_id: str, outfile: Path) -> None:
     logging.info("Fetching messages for game %s.", game_id)
     messaging = Messaging(api_key)
-    messages = messaging.get_messages_from_game(game_id, race_id)
+    if planets["race_id"]:
+        messages = messaging.get_messages_from_game(planets["game_id"], race_id)
+    else:
+        messages = messaging.get_all_messages_from_game(planets["game_id"])
     if messages:
         logging.info("Saving messages from game %s to %s.", game_id, outfile)
         exporting = Exporting()
@@ -178,3 +188,4 @@ def _mbox(game_id: str, api_key: str, race_id: str, outfile: Path) -> None:
         logging.info("Messages saved.")
     else:
         logging.error("Could not get messages from game %s", game_id)
+        raise typer.Exit()

@@ -29,7 +29,12 @@ class Exporting:
         ]
         with open(csv_path, "w", newline="") as csvfile:
             self.logger.debug("Writing messages to CSV file %s", str(csv_path))
-            msgwriter = csv.DictWriter(csvfile, dialect="excel", fieldnames=fieldnames)
+            msgwriter = csv.DictWriter(
+                csvfile,
+                dialect="excel",
+                fieldnames=fieldnames,
+                quoting=csv.QUOTE_MINIMAL,
+            )
             msgwriter.writeheader()
             for msg in messages:
                 msgwriter.writerow(
@@ -41,7 +46,7 @@ class Exporting:
                         "datetime": msg["dateadded"],
                         "sender": msg["sourcename"],
                         "recipients": ", ".join(msg["recipients"].keys()),
-                        "message": msg["message"],
+                        "message": msg["message"].replace("<br/>", "\r\n"),
                     }
                 )
                 for reply in sorted(msg["replies"], key=lambda x: x["dateadded"]):
@@ -53,7 +58,7 @@ class Exporting:
                             "turn": reply["turn"],
                             "sender": reply["sourcename"],
                             "recipients": ", ".join(reply["recipients"].keys()),
-                            "message": reply["message"],
+                            "message": reply["message"].replace("<br/>", "\r\n"),
                         }
                     )
 
@@ -69,6 +74,7 @@ class Exporting:
             if msg["msgid"] not in message_ids:
                 mbox.save_email_message(msg)
                 self.logger.debug("Wrote message %s", msg["msgid"])
+                message_ids[msg["msgid"]] = True
 
             for reply in sorted(msg["replies"], key=lambda x: x["dateadded"]):
                 if reply["msgid"] not in message_ids:
@@ -76,3 +82,4 @@ class Exporting:
                     self.logger.debug(
                         "Wrote reply %s (parent %s)", reply["msgid"], msg["msgid"]
                     )
+                    message_ids[reply["msgid"]] = True

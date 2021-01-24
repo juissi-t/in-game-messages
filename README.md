@@ -208,3 +208,7 @@ Here's an unordered list of future improvements to the project:
 - More command-line commands for different purposes, e.g. sending messages to other messaging systems than Slack.
 - Running the tool continuously for multiple games, sending messages to game-specific channels.
 - Better comments, documenting the classes.
+
+## License
+
+[MIT](LICENSE)

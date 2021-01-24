@@ -183,9 +183,9 @@ def _mbox(game_id: str, api_key: str, race_id: str, outfile: Path) -> None:
     logger.info("Fetching messages for game %s.", game_id)
     messaging = Messaging(api_key)
     if planets["race_id"]:
-        messages = messaging.get_messages_from_game(planets["game_id"], race_id)
+        messages = messaging.get_messages_from_game(game_id, race_id)
     else:
-        messages = messaging.get_all_messages_from_game(planets["game_id"])
+        messages = messaging.get_all_messages_from_game(game_id)
     if messages:
         logger.info("Saving messages from game %s to %s.", game_id, outfile)
         exporting = Exporting()

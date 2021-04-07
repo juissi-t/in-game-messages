@@ -3,7 +3,7 @@ name: Python package
 on: [push]
 
 jobs:
-  build:
+  build_and_test:
 
     runs-on: ubuntu-latest
     strategy:
@@ -20,15 +20,23 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -U .\[dev]
-    - name: Lint with flake8
-      run: |
-        flake8 in_game_messages --max-line-length=88
-    - name: Lint with pylint
-      run: |
-        pylint in_game_messages
-    - name: Lint with mypy
-      run: |
-        mypy in_game_messages
     - name: Test with pytest
       run: |
         pytest
+
+  lint:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -U .
+    - uses: marian-code/pyaction@v2.5.0
+      with:
+        python-root-list: "./in_game_messages"
+        extra-pycodestyle-options: "--max-line-length=88"
+        extra-flake8-options: "--max-line-length=88"
+        extra-vulture-options: "vulture_whitelist.py"

@@ -16,6 +16,7 @@ class Mbox:
         self,
         mbox_path: Path,
     ) -> None:
+        """Class constructor."""
         super().__init__()
         self.mbox = mailbox.mbox(mbox_path, create=True)
         self.logger = logging.getLogger(__name__)

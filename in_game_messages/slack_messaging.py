@@ -22,6 +22,7 @@ class SlackMessaging:
         slack_bot_token: str,
         slack_channel_id: str,
     ) -> None:
+        """Class constructor."""
         super().__init__()
         self.slack_channel_id = slack_channel_id
         self.slack_client = WebClient(token=slack_bot_token)

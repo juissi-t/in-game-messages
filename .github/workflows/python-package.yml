@@ -30,17 +30,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -U .
     - uses: marian-code/pyaction@v2.5.0
       with:
-        python-root-list: "./in_game_messages"
-        use-black: true
-        use-isort: true
-        use-mypy: true
-        use-pycodestyle: true
-        use-pydocstyle: true
         extra-pycodestyle-options: "--max-line-length=88"
-        use-pylint: true
-        use-flake8: true
         extra-flake8-options: "--max-line-length=88"
-        use-vulture: true
         conda-python-version: "3.9"

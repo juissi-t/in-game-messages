@@ -12,6 +12,7 @@ class Exporting:
     """A class to export messages for a game from planets.nu."""
 
     def __init__(self) -> None:
+        """Class constructor."""
         super().__init__()
         self.logger = logging.getLogger(__name__)
 

@@ -39,3 +39,4 @@ jobs:
         python-root-list: "./in_game_messages"
         extra-pycodestyle-options: "--max-line-length=88"
         extra-flake8-options: "--max-line-length=88"
+        extra-vulture-options: "vulture_whitelist.py"

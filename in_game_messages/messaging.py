@@ -16,6 +16,7 @@ class Messaging:
     """A class to fetch messages for a game from planets.nu."""
 
     def __init__(self, planets_api_key: str) -> None:
+        """Class constructor."""
         super().__init__()
         self.planets_api_key = planets_api_key
         self.logger = logging.getLogger(__name__)

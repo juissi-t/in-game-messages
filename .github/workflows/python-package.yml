@@ -36,6 +36,6 @@ jobs:
         pip install -U .
     - uses: marian-code/pyaction@v2.5.0
       with:
+        python-root-list: "./in_game_messages"
         extra-pycodestyle-options: "--max-line-length=88"
         extra-flake8-options: "--max-line-length=88"
-        conda-python-version: "3.9"

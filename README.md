@@ -201,13 +201,11 @@ If you wish to share your new features and bug fixes, I'd be happy to receive th
 
 Here's an unordered list of future improvements to the project:
 
-- Add some annotating [GitHub Actions](https://docs.github.com/en/free-pro-team@latest/actions) for `pytest`, `pylint`, `flake8` and `mypy` to ensure code quality with continuous integration and to automatically comment on pull requests when there are issues.
 - Package the project as a Python package and publish in GitHub.
 - Create a utility class for sending in-game messages.
 - Move Planets.Nu API calls to their own class.
 - More command-line commands for different purposes, e.g. sending messages to other messaging systems than Slack.
 - Running the tool continuously for multiple games, sending messages to game-specific channels.
-- Better comments, documenting the classes.
 
 ## License
 

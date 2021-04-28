@@ -30,18 +30,18 @@ setup(
     package_data={},
     install_requires=[
         "typer==0.3.*,>=0.3.2",
-        "setuptools>=54,<57",
+        "setuptools>=56,<57",
         "requests==2.25.*,>=2.25.0",
-        "slack-sdk>=3.3,<3.6",
+        "slack-sdk>=3.5,<3.6",
         "shellingham>=1.4,<1.5",
         "wheel==0.36.*,>=0.36.2",
     ],
     extras_require={
         "dev": [
             "pytest==6.*,>=6.1.2",
-            "black==20.*,>=20.8b1",
-            "pylint>=2.6,<2.9",
-            "flake8>=3.8,<3.10",
+            "black==21.4b0",
+            "pylint>=2.8,<2.9",
+            "flake8>=3.9,<3.10",
             "mypy==0.812",
         ]
     },

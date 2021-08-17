@@ -34,7 +34,7 @@ setup(
         "requests>=2.25,<2.27",
         "slack-sdk>=3.5,<3.10",
         "shellingham>=1.4,<1.5",
-        "wheel==0.36.*,>=0.36.2",
+        "wheel>=0.36,<0.38",
     ],
     extras_require={
         "dev": [

@@ -32,7 +32,7 @@ setup(
         "typer>=0.3,<0.5",
         "setuptools>=56,<60",
         "requests>=2.25,<2.27",
-        "slack-sdk>=3.5,<3.12",
+        "slack-sdk>=3.5,<3.13",
         "shellingham>=1.4,<1.5",
         "wheel>=0.36,<0.38",
     ],

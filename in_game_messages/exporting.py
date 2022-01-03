@@ -28,7 +28,7 @@ class Exporting:
             "recipients",
             "message",
         ]
-        with open(csv_path, "w", newline="") as csvfile:
+        with open(csv_path, "w", newline="", encoding="utf-8") as csvfile:
             self.logger.debug("Writing messages to CSV file %s", str(csv_path))
             msgwriter = csv.DictWriter(
                 csvfile,

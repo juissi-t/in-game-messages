@@ -31,7 +31,7 @@ setup(
     install_requires=[
         "typer>=0.4,<0.5",
         "setuptools>=60,<63",
-        "requests>=2.26,<2.28",
+        "requests>=2.26,<2.29",
         "slack-sdk>=3.13,<3.18",
         "shellingham>=1.4,<1.5",
         "wheel>=0.37,<0.38",

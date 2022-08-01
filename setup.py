@@ -29,21 +29,21 @@ setup(
     package_dir={"": "."},
     package_data={},
     install_requires=[
-        "typer>=0.4,<0.5",
-        "setuptools>=60,<64",
-        "requests>=2.26,<2.29",
-        "slack-sdk>=3.13,<3.18",
-        "shellingham>=1.4,<1.5",
-        "wheel>=0.37,<0.38",
+        "typer==0.7",
+        "setuptools==63",
+        "requests==2.28",
+        "slack-sdk==3.17",
+        "shellingham==1.4",
+        "wheel==0.37",
     ],
     extras_require={
         "dev": [
-            "pytest>=6,<8",
-            "black==22.3.0",
-            "pylint>=2.12,<2.15",
-            "flake8>=4.0,<4.1",
-            "mypy==0.961",
-            "types-requests==2.28.0",
+            "pytest==7",
+            "black==22.6.0",
+            "pylint==2.14",
+            "flake8==4.0",
+            "mypy==0.971",
+            "types-requests==2.28.3",
         ]
     },
 )

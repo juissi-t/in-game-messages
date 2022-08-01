@@ -34,7 +34,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -U .
-    - uses: marian-code/pyaction@v2
+    - uses: marian-code/python-lint-annotate@v3
       with:
         python-root-list: "./in_game_messages"
         extra-pycodestyle-options: "--max-line-length=88"

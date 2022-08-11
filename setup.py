@@ -41,7 +41,7 @@ setup(
             "pytest==7.1.2",
             "black==22.6.0",
             "pylint==2.14.5",
-            "flake8==5.0.1",
+            "flake8==5.0.4",
             "mypy==0.971",
             "types-requests==2.28.6",
         ]

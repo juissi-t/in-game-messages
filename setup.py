@@ -43,7 +43,7 @@ setup(
             "pylint==2.14.5",
             "flake8==5.0.4",
             "mypy==0.971",
-            "types-requests==2.28.8",
+            "types-requests==2.28.9",
         ]
     },
 )

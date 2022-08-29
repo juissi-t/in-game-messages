@@ -40,7 +40,7 @@ setup(
         "dev": [
             "pytest==7.1.2",
             "black==22.6.0",
-            "pylint==2.14.5",
+            "pylint==2.15.0",
             "flake8==5.0.4",
             "mypy==0.971",
             "types-requests==2.28.9",

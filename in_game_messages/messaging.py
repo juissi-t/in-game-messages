@@ -210,6 +210,7 @@ class Messaging:
             "The Lizards": "2",
             "The Bird Men": "3",
             "The Fascists": "4",
+            "The Fury": "4",
             "The Privateers": "5",
             "The Cyborg": "6",
             "The Crystals": "7",

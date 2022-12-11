@@ -149,7 +149,7 @@ def main(
 def login(username: str, password: str) -> str:
     """Return planets.nu API key after logging in using username and password."""
     payload = {"username": username, "password": password}
-    response = requests.post("https://api.planets.nu/login", data=payload)
+    response = requests.post("https://api.planets.nu/login", data=payload, timeout=30)
     if response.status_code == 200:
         json_doc = response.json()
         if "apikey" in json_doc:
@@ -163,7 +163,9 @@ def login(username: str, password: str) -> str:
 def get_running_games(apikey: str) -> Dict:
     """Return a list of running games for a user."""
     payload = {"apikey": apikey}
-    response = requests.post("https://api.planets.nu/account/mygames", data=payload)
+    response = requests.post(
+        "https://api.planets.nu/account/mygames", data=payload, timeout=30
+    )
     if response.status_code == 200:
         json_doc = response.json()
         games = {}

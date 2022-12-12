@@ -29,7 +29,7 @@ setup(
     package_dir={"": "."},
     package_data={},
     install_requires=[
-        "typer==0.6.1",
+        "typer==0.7.0",
         "setuptools==65.6.3",
         "requests==2.28.1",
         "slack-sdk==3.19.5",

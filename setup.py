@@ -30,7 +30,7 @@ setup(
     package_data={},
     install_requires=[
         "typer==0.7.0",
-        "setuptools==66.0.0",
+        "setuptools==66.1.1",
         "requests==2.28.2",
         "slack-sdk==3.19.5",
         "shellingham==1.5.0.post1",

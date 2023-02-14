@@ -42,7 +42,7 @@ setup(
             "black==23.1.0",
             "pylint==2.16.1",
             "flake8==6.0.0",
-            "mypy==0.991",
+            "mypy==1.0.0",
             "types-requests==2.28.11.12",
         ]
     },

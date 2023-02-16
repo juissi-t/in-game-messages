@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/juissi-t/in-game-messages/compare/v0.3.0...v0.3.1) (2023-02-16)
+
+
+### Bug Fixes
+
+* **cd:** Use correct name for release step ([#168](https://github.com/juissi-t/in-game-messages/issues/168)) ([8e9678b](https://github.com/juissi-t/in-game-messages/commit/8e9678b07d5ec710fb42849b3e4935e88a721796))
+
 ## [0.3.0](https://github.com/juissi-t/in-game-messages/compare/v0.2.0...v0.3.0) (2023-02-16)
 
 

@@ -1,4 +1,4 @@
-name: Do release
+name: Release
 
 on:
   push:
@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   release:

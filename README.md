@@ -72,6 +72,41 @@ Messages sent to Slack are stored in a mailbox file in the directory where the c
 | `--planets-game-id` | `PLANETS_GAME_ID` | Game ID for the game you want to fetch messages from. |
 | `--planets-race-id` | `PLANETS_RACE_ID` | Race ID in the game to fet messages for. |
 
+### Sending messages to Discord
+
+To send messages to a Slack channel, you need to specify the game ID, race ID, Slack channel ID (channel name might work too, but is not guaranteed) and give a Slack bot token. Using environment variables:
+
+```console
+% export PLANETS_API_KEY="<your API key>"
+% export PLANETS_GAME_ID="123456"
+% export PLANETS_RACE_ID="7"
+% export DISCORD_BOT_TOKEN="<your Discord bot token>"
+% export DISCORD_CHANNEL_ID="<your Discord channel ID>"
+% export DISCORD_USER_IDS="<space separated list of Discord user IDs who will be added to every thread>"
+% in-game-messages send discord
+```
+
+Using command line options:
+
+```console
+% in-game-messages send --planets-api-key="<your API key>" --planets-game-id="123456" --planets-race-id="7" discord --discord-bot-token="<your Discord bot token>" --discord-channel-id="<your Discord channel ID>" --discord-user-ids="<space separated list of Discord user IDs>"
+```
+
+Messages sent to Discord are stored in a mailbox file in the directory where the command is run. If you remove some messages from the mailbox (or the file), those messages will be re-sent to Discord when you run the command again.
+
+#### Command line options and environment variables when sending messages to Discord
+
+| Option | Environment variable | Explanation |
+| ------ | -------------------- | ----------- |
+| `--discord-bot-token` | `DISCORD_BOT_TOKEN` | Bot token from your [Discord bot](https://docs.pycord.dev/en/stable/discord.html) which has the required permissions to post to your Discord server. |
+| `--discord-channel-id` | `DISCORD_CHANNEL_ID` | Discord channel ID. |
+| `--discord-user-ids` | `DISCORD_USER_IDS` | Space separated list of Discord user IDs who will be added to all threads, so that they receive notifications of new messages to threads. |
+| `--planets-api-key` | `PLANETS_API_KEY` | Your Planets.Nu API key. Mutually exclusive with username and password. |
+| `--planets-username` | `PLANETS_USERNAME` | Your Planets.Nu username. Password also required. |
+| `--planets-password` | `PLANETS_PASSWORD` | Your Planets.Nu password. Username also required. |
+| `--planets-game-id` | `PLANETS_GAME_ID` | Game ID for the game you want to fetch messages from. |
+| `--planets-race-id` | `PLANETS_RACE_ID` | Race ID in the game to fet messages for. |
+
 ### Exporting messages to files
 
 It's possible to export messages in either comma separated values (CSV) file or as a mailbox file. CSV file can be imported to a spreadsheet program for analysis, while mailbox can be imported to an e-mail client to read messages in a threaded view. To import the messages to [Thunderbird](https://www.thunderbird.net/), you can use the [ImportExportTools NG](https://addons.thunderbird.net/en-US/thunderbird/addon/importexporttools-ng/) add-on.
@@ -206,6 +241,7 @@ Here's an unordered list of future improvements to the project:
 - Move Planets.Nu API calls to their own class.
 - More command-line commands for different purposes, e.g. sending messages to other messaging systems than Slack.
 - Running the tool continuously for multiple games, sending messages to game-specific channels.
+- Add tests for Discord.
 
 ## License
 

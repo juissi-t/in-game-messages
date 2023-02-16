@@ -1,4 +1,4 @@
-name: Release
+name: Release and build container
 
 on:
   push:
@@ -24,6 +24,9 @@ jobs:
         with:
           release-type: python
           package-name: in-game-messages
+
+      - uses: actions/checkout@v3
+        if: ${{ steps.release.outputs.release_created }}
 
       - name: Log in to the Container registry
         if: ${{ steps.release.outputs.release_created }}

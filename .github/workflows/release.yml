@@ -2,8 +2,7 @@ name: Do release
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 permissions:
   contents: write
@@ -19,5 +18,3 @@ jobs:
         with:
           release-type: python
           package-name: in-game-messages
-          command: github-release
-          release-as: "1.0.0"

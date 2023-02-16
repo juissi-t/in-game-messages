@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.2](https://github.com/juissi-t/in-game-messages/compare/v0.3.1...v0.3.2) (2023-02-16)
+
+
+### Bug Fixes
+
+* Use version as container tag ([#170](https://github.com/juissi-t/in-game-messages/issues/170)) ([ab7f795](https://github.com/juissi-t/in-game-messages/commit/ab7f795ce115d77f2fdddbd400a9e72f86d9ee8a))
+
 ## [0.3.1](https://github.com/juissi-t/in-game-messages/compare/v0.3.0...v0.3.1) (2023-02-16)
 
 

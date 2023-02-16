@@ -15,6 +15,6 @@ jobs:
         id: release
         with:
           release-type: python
-          package-name: ${{ github.repository }}
+          package-name: in-game-messages
           command: github-release
           release-as: "1.0.0"

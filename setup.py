@@ -8,6 +8,13 @@ except ImportError:
 
 import os.path
 
+package_root = os.path.abspath(os.path.dirname(__file__))
+
+version = {}
+with open(os.path.join(package_root, "in_game_messages/version.py")) as fp:
+    exec(fp.read(), version)
+version = version["__version__"]
+
 readme = ""
 here = os.path.abspath(os.path.dirname(__file__))
 readme_path = os.path.join(here, "README.md")
@@ -19,7 +26,7 @@ if os.path.exists(readme_path):
 setup(
     long_description=readme,
     name="in-game-messages",
-    version="0.1.0",
+    version=version,
     description="Send planets.nu in-game messages to Slack",
     python_requires="==3.*,>=3.7.9",
     author="Juha Tiensyrjä",

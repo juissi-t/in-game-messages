@@ -1,0 +1,20 @@
+name: Do release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Release
+        uses: google-github-actions/release-please-action@v3
+        id: release
+        with:
+          release-type: python
+          package-name: ${{ github.repository }}
+          command: github-release
+          release-as: "1.0.0"

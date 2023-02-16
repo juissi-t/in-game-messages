@@ -32,7 +32,9 @@ class Messaging:
         }
 
         resp = requests.post(
-            "https://api.planets.nu/account/ingameactivity", data=payload
+            "https://api.planets.nu/account/ingameactivity",
+            data=payload,
+            timeout=30,
         )
 
         if "activity" in resp.json():
@@ -104,7 +106,9 @@ class Messaging:
         race_ids = []
         payload = {"apikey": self.planets_api_key, "gameid": planets_game_id}
         resp = requests.post(
-            "https://api.planets.nu/game/loadinfo?version=1", data=payload
+            "https://api.planets.nu/game/loadinfo?version=1",
+            data=payload,
+            timeout=30,
         )
         if "players" in resp.json():
             for player in resp.json()["players"]:
@@ -206,6 +210,7 @@ class Messaging:
             "The Lizards": "2",
             "The Bird Men": "3",
             "The Fascists": "4",
+            "The Fury": "4",
             "The Privateers": "5",
             "The Cyborg": "6",
             "The Crystals": "7",

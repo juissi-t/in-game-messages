@@ -3,11 +3,13 @@
 
 import logging
 from pathlib import Path
-from typing import Dict
+from typing import Dict, List, Optional
 
+from discord import Intents
 import requests
 import typer
 
+from in_game_messages.discord_messaging import DiscordMessaging
 from in_game_messages.exporting import Exporting
 from in_game_messages.messaging import Messaging
 from in_game_messages.slack_messaging import SlackMessaging
@@ -51,13 +53,48 @@ def slack(
         logger.error("Could not get messages from game %s", planets["game_id"])
 
 
+@send_app.command()
+def discord(
+    discord_bot_token: str = typer.Option(..., envvar="DISCORD_BOT_TOKEN"),
+    discord_channel_id: int = typer.Option(..., envvar="DISCORD_CHANNEL_ID"),
+    discord_user_ids: Optional[List[int]] = typer.Option(
+        None,
+        envvar="DISCORD_USER_IDS",
+        help="List of Discord user IDs which will be added to threads",
+    ),
+):
+    """Send planets.nu in-game messages to Discord."""
+    if not planets["race_id"]:
+        logger.error("Player ID required when sending messages to Discord!")
+        raise typer.Exit()
+    logger.info("Fetching messages for game %s.", planets["game_id"])
+    messaging = Messaging(planets["api_key"])
+    messages = messaging.get_messages_from_game(planets["game_id"], planets["race_id"])
+    if messages:
+        logger.info("Sending messages from game %s to Discord.", planets["game_id"])
+
+        intents = Intents.default()
+
+        discord_messaging = DiscordMessaging(
+            discord_channel_id=discord_channel_id,
+            discord_user_ids=discord_user_ids,
+            game_id=planets["game_id"],
+            messages=messages,
+            intents=intents,
+        )
+        discord_messaging.run(token=discord_bot_token)
+        logger.info("Messages sent.")
+    else:
+        logger.error("Could not get messages from game %s", planets["game_id"])
+
+
 @export_app.command()
 def running_to_mbox(
     outdir: Path = typer.Argument(..., help="Directory to store mailbox files in")
 ):
     """Export planets.nu in-game messages for all your running games to a mailbox."""
     logger.info("Getting list of active games.")
-    games = get_running_games(planets["api_key"])
+    games = _get_running_games(planets["api_key"])
     logger.info("Found games: %s", ", ".join(games.keys()))
     for game_id, game in games.items():
         outfile = outdir / f"{game['name']} ({game_id})"
@@ -137,7 +174,7 @@ def main(
     if planets_api_key:
         planets["api_key"] = planets_api_key
     elif planets_username and planets_password:
-        planets["api_key"] = login(planets_username, planets_password)
+        planets["api_key"] = _login(planets_username, planets_password)
     else:
         logger.error("Either API key or password and username required!")
         raise typer.Exit()
@@ -146,10 +183,10 @@ def main(
     planets["race_id"] = planets_race_id
 
 
-def login(username: str, password: str) -> str:
+def _login(username: str, password: str) -> str:
     """Return planets.nu API key after logging in using username and password."""
     payload = {"username": username, "password": password}
-    response = requests.post("https://api.planets.nu/login", data=payload)
+    response = requests.post("https://api.planets.nu/login", data=payload, timeout=30)
     if response.status_code == 200:
         json_doc = response.json()
         if "apikey" in json_doc:
@@ -160,10 +197,12 @@ def login(username: str, password: str) -> str:
     raise typer.Exit()
 
 
-def get_running_games(apikey: str) -> Dict:
+def _get_running_games(apikey: str) -> Dict:
     """Return a list of running games for a user."""
     payload = {"apikey": apikey}
-    response = requests.post("https://api.planets.nu/account/mygames", data=payload)
+    response = requests.post(
+        "https://api.planets.nu/account/mygames", data=payload, timeout=30
+    )
     if response.status_code == 200:
         json_doc = response.json()
         games = {}

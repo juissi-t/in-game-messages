@@ -18,13 +18,13 @@ class Mbox:
     ) -> None:
         """Class constructor."""
         super().__init__()
-        self.mbox = mailbox.mbox(mbox_path, create=True)
+        self.mailbox = mailbox.mbox(mbox_path, create=True)
         self.logger = logging.getLogger(__name__)
 
     def get_message_ids(self) -> Dict:
         """Return message IDs from a mailbox."""
         message_ids = {}
-        for message in self.mbox.itervalues():
+        for message in self.mailbox.itervalues():
             message_ids[message["Message-ID"]] = message["X-Slack-ID"]
         return message_ids
 
@@ -51,7 +51,7 @@ class Mbox:
             if "parentmsgid" in message:
                 msg["References"] = message["parentmsgid"]
                 msg["In-Reply-To"] = message["parentmsgid"]
-            self.mbox.add(msg)
+            self.mailbox.add(msg)
             return True
         except mailbox.Error as err:
             self.logger.error("Saving message to mailbox failed: %s", err)

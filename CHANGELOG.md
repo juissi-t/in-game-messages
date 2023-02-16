@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/juissi-t/in-game-messages/compare/v0.2.0...v0.3.0) (2023-02-16)
+
+
+### Features
+
+* Move container build to run after release ([#166](https://github.com/juissi-t/in-game-messages/issues/166)) ([17ef13e](https://github.com/juissi-t/in-game-messages/commit/17ef13ead3bc63176c0de444869b31cf0df42a5e))
+
 ## [0.2.0](https://github.com/juissi-t/in-game-messages/compare/0.1.0...v0.2.0) (2023-02-16)
 
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.3](https://github.com/juissi-t/in-game-messages/compare/v0.3.2...v0.3.3) (2023-02-20)
+
+
+### Bug Fixes
+
+* Pin release-please version in GHA pipeline ([#180](https://github.com/juissi-t/in-game-messages/issues/180)) ([2e22bda](https://github.com/juissi-t/in-game-messages/commit/2e22bdafad715d3fbf06bc230fedaf07a45913f7))
+* Use PAT in release pipeline ([#182](https://github.com/juissi-t/in-game-messages/issues/182)) ([389f7fd](https://github.com/juissi-t/in-game-messages/commit/389f7fd9bcb9566ca857931fd491f3697e0553a2))
+
 ## [0.3.2](https://github.com/juissi-t/in-game-messages/compare/v0.3.1...v0.3.2) (2023-02-16)
 
 

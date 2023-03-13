@@ -7,7 +7,7 @@ import logging
 import re
 import struct
 from datetime import datetime, timedelta, timezone
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 import requests
 
@@ -132,7 +132,7 @@ class Messaging:
 
     @staticmethod
     def construct_outlook_thread_index(
-        message: Dict, parent_thread_index: str = None
+        message: Dict, parent_thread_index: Optional[str] = None
     ) -> str:
         """Construct a thread index to allow threading in Outlook."""
         thread_index = ""

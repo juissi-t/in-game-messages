@@ -8,7 +8,6 @@ updates:
   - "juissi-t"
   commit-message:
     prefix: chore
-    include: scope
 - package-ecosystem: "docker"
   directory: "/"
   schedule:
@@ -17,4 +16,3 @@ updates:
   - "juissi-t"
   commit-message:
     prefix: chore
-    include: scope

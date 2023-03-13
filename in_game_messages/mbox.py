@@ -6,7 +6,7 @@ import email
 import logging
 import mailbox
 from pathlib import Path
-from typing import Dict
+from typing import Dict, Optional
 
 
 class Mbox:
@@ -31,7 +31,7 @@ class Mbox:
     def save_email_message(
         self,
         message: Dict,
-        thread_id: str = None,
+        thread_id: Optional[str] = None,
     ) -> bool:
         """Construct an e-mail from an in-game message and save it to a mailbox."""
         try:

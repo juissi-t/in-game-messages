@@ -5,7 +5,7 @@ import logging
 import re
 import time
 from pathlib import Path
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
@@ -29,7 +29,7 @@ class SlackMessaging:
         self.logger = logging.getLogger(__name__)
 
     def send_slack_message(
-        self, text: str, sender: Dict, parent: str = None
+        self, text: str, sender: Dict, parent: Optional[str] = None
     ) -> SlackResponse:
         """Send Slack message to the configured channel."""
         try:
@@ -70,7 +70,7 @@ class SlackMessaging:
             raise
 
     def send_new_messages_to_slack(
-        self, messages: List, planets_game_id: str, mbox_path: Path = None
+        self, messages: List, planets_game_id: str, mbox_path: Optional[Path] = None
     ) -> None:
         """Fetch messages from a game and send new ones to Slack."""
         if not mbox_path:

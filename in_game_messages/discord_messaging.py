@@ -42,7 +42,7 @@ class DiscordMessaging(discord.Client):
         self,
         channel: discord.TextChannel,
         msg: Dict,
-        parent: Dict = None,
+        parent: Optional[Dict] = None,
         parent_msg: Optional[discord.Message] = None,
         parent_thread: Optional[discord.Thread] = None,
     ) -> Tuple[discord.Message, Optional[discord.Thread]]:
@@ -63,9 +63,7 @@ class DiscordMessaging(discord.Client):
                         parent_msg.id,
                     )
 
-                    thread_name = (
-                        f'Turn {parent["turn"]} - {parent["sender"]["name"]}'  # type: ignore # noqa
-                    )
+                    thread_name = f'Turn {parent["turn"]} - {parent["sender"]["name"]}'  # type: ignore # noqa
                     parent_message = await channel.fetch_message(parent_msg.id)
                     parent_thread = await parent_message.create_thread(name=thread_name)
                     if self.discord_user_ids:
@@ -81,7 +79,7 @@ class DiscordMessaging(discord.Client):
             raise
 
     async def send_new_messages_to_discord(
-        self, messages: List, planets_game_id: str, mbox_path: Path = None
+        self, messages: List, planets_game_id: str, mbox_path: Optional[Path] = None
     ) -> None:
         """Fetch messages from a game and send new ones to Discord."""
         if not mbox_path:

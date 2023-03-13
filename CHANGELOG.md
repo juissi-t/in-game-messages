@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.4](https://github.com/juissi-t/in-game-messages/compare/v0.3.3...v0.3.4) (2023-03-13)
+
+
+### Bug Fixes
+
+* Add some more paths to .gitignore ([#195](https://github.com/juissi-t/in-game-messages/issues/195)) ([f92796c](https://github.com/juissi-t/in-game-messages/commit/f92796c5ad18fa899ea1ad21cb7a4d6d35dc8acc))
+* Fix some linter errors ([#193](https://github.com/juissi-t/in-game-messages/issues/193)) ([9858ea0](https://github.com/juissi-t/in-game-messages/commit/9858ea03f96bf98aa1f96d73542e102416cee11d))
+
 ## [0.3.3](https://github.com/juissi-t/in-game-messages/compare/v0.3.2...v0.3.3) (2023-02-20)
 
 

@@ -174,7 +174,7 @@ class DiscordMessaging(discord.Client):
         embed = discord.Embed(
             timestamp=datetime.strptime(message["dateadded"], "%Y-%m-%dT%H:%M:%S"),
             title=f'***Turn {message["turn"]}***',
-            description=message["message"].replace("<br/>", "\n"),
+            description=message["message"].replace("<br/>", "\n")[:4095],
         )
         embed.set_author(
             name=message["sender"]["name"],

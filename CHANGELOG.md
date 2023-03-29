@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.5](https://github.com/juissi-t/in-game-messages/compare/v0.3.4...v0.3.5) (2023-03-29)
+
+
+### Bug Fixes
+
+* Truncate embed descriptions to &lt;4096 characters ([#201](https://github.com/juissi-t/in-game-messages/issues/201)) ([8734e60](https://github.com/juissi-t/in-game-messages/commit/8734e602932288859637f2d2151fc72cfc04b6fd))
+
 ## [0.3.4](https://github.com/juissi-t/in-game-messages/compare/v0.3.3...v0.3.4) (2023-03-13)
 
 

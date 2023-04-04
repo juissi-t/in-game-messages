@@ -7,7 +7,7 @@ updates:
   reviewers:
   - "juissi-t"
   commit-message:
-    prefix: chore
+    prefix: fix(deps)
 - package-ecosystem: "docker"
   directory: "/"
   schedule:
@@ -15,4 +15,4 @@ updates:
   reviewers:
   - "juissi-t"
   commit-message:
-    prefix: chore
+    prefix: fix(deps)

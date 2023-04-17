@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.3.6](https://github.com/juissi-t/in-game-messages/compare/v0.3.5...v0.3.6) (2023-04-17)
+
+
+### Bug Fixes
+
+* **deps:** bump mypy from 1.1.1 to 1.2.0 ([#211](https://github.com/juissi-t/in-game-messages/issues/211)) ([0af6e1a](https://github.com/juissi-t/in-game-messages/commit/0af6e1a5364da53f68a4ad016a34522f87afb7e5))
+* **deps:** bump pytest from 7.2.2 to 7.3.0 ([#209](https://github.com/juissi-t/in-game-messages/issues/209)) ([ca4cd7e](https://github.com/juissi-t/in-game-messages/commit/ca4cd7e1a772b33b2be58eca0123e9b397871fa0))
+* **deps:** bump pytest from 7.2.2 to 7.3.0 ([#209](https://github.com/juissi-t/in-game-messages/issues/209)) ([da1e6c1](https://github.com/juissi-t/in-game-messages/commit/da1e6c16beb41d3cd1291230044130fd1e222bea))
+* **deps:** bump pytest from 7.3.0 to 7.3.1 ([#213](https://github.com/juissi-t/in-game-messages/issues/213)) ([b191de8](https://github.com/juissi-t/in-game-messages/commit/b191de8295cab16c81c89abeb7c0ee62ded40205))
+* **deps:** bump python ([#212](https://github.com/juissi-t/in-game-messages/issues/212)) ([3c4c176](https://github.com/juissi-t/in-game-messages/commit/3c4c17694c3d51d3532daf6ab44d66c33f77bd61))
+* **deps:** bump setuptools from 67.6.0 to 67.6.1 ([#206](https://github.com/juissi-t/in-game-messages/issues/206)) ([a09c1ae](https://github.com/juissi-t/in-game-messages/commit/a09c1aecbd9a9904f246231a269bde850dccc9ac))
+* **deps:** bump slack-sdk from 3.20.2 to 3.21.0 ([#210](https://github.com/juissi-t/in-game-messages/issues/210)) ([d3a005b](https://github.com/juissi-t/in-game-messages/commit/d3a005bd0d9ea75ec599476ebc1a12a0ec691728))
+* **deps:** bump slack-sdk from 3.21.0 to 3.21.1 ([#214](https://github.com/juissi-t/in-game-messages/issues/214)) ([24d269c](https://github.com/juissi-t/in-game-messages/commit/24d269cd0df49f075e741dfacc5fb8cac6a89a23))
+* Use fix(deps) prefix ind dependabot config to trigger releases ([#208](https://github.com/juissi-t/in-game-messages/issues/208)) ([98ed878](https://github.com/juissi-t/in-game-messages/commit/98ed87856e77a0eaf6571704d24ebbc3af7cbaca))
+
 ## [0.3.5](https://github.com/juissi-t/in-game-messages/compare/v0.3.4...v0.3.5) (2023-03-29)
 
 

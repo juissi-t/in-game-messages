@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.7](https://github.com/juissi-t/in-game-messages/compare/v0.3.6...v0.3.7) (2023-05-03)
+
+
+### Bug Fixes
+
+* **deps:** bump pylint from 2.17.2 to 2.17.3 ([#221](https://github.com/juissi-t/in-game-messages/issues/221)) ([7727791](https://github.com/juissi-t/in-game-messages/commit/772779137c1056b46632c4851d13b46fec45bcca))
+* **deps:** bump setuptools from 67.6.1 to 67.7.2 ([#216](https://github.com/juissi-t/in-game-messages/issues/216)) ([7d1de56](https://github.com/juissi-t/in-game-messages/commit/7d1de562c46777d3bd97cf1d403e11ac75b63411))
+* **deps:** bump slack-sdk from 3.21.1 to 3.21.2 ([#215](https://github.com/juissi-t/in-game-messages/issues/215)) ([ea3476a](https://github.com/juissi-t/in-game-messages/commit/ea3476a07ddcc4d31f17092debd53bc80f12ab4d))
+* **deps:** bump slack-sdk from 3.21.2 to 3.21.3 ([#218](https://github.com/juissi-t/in-game-messages/issues/218)) ([e4a40ca](https://github.com/juissi-t/in-game-messages/commit/e4a40cad7b950a1732218b1d9c27968afe29ec0d))
+* **deps:** bump typer from 0.7.0 to 0.9.0 ([#222](https://github.com/juissi-t/in-game-messages/issues/222)) ([c595a77](https://github.com/juissi-t/in-game-messages/commit/c595a7712e608989fd93ba3281192ed87b9676da))
+* **deps:** bump types-requests from 2.28.11.17 to 2.29.0.0 ([#219](https://github.com/juissi-t/in-game-messages/issues/219)) ([0f66109](https://github.com/juissi-t/in-game-messages/commit/0f661091762b0943c223894c49d807a9eb0e1788))
+
 ## [0.3.6](https://github.com/juissi-t/in-game-messages/compare/v0.3.5...v0.3.6) (2023-04-17)
 
 

@@ -39,7 +39,7 @@ setup(
         "py-cord==2.4.1",
         "typer==0.9.0",
         "setuptools==67.7.2",
-        "requests==2.28.2",
+        "requests==2.30.0",
         "slack-sdk==3.21.3",
         "shellingham==1.5.1",
         "wheel==0.40.0",

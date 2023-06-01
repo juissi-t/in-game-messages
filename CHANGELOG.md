@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.3.8](https://github.com/juissi-t/in-game-messages/compare/v0.3.7...v0.3.8) (2023-06-01)
+
+
+### Bug Fixes
+
+* **deps:** bump mypy from 1.2.0 to 1.3.0 ([#227](https://github.com/juissi-t/in-game-messages/issues/227)) ([7c8ac2d](https://github.com/juissi-t/in-game-messages/commit/7c8ac2dffd8da1dc04a06a1a5c4ad4df3d7faa75))
+* **deps:** bump pylint from 2.17.3 to 2.17.4 ([#223](https://github.com/juissi-t/in-game-messages/issues/223)) ([de856d9](https://github.com/juissi-t/in-game-messages/commit/de856d95dc285efe509ccbaf869efd06f6ae5a48))
+* **deps:** bump requests from 2.28.2 to 2.30.0 ([#225](https://github.com/juissi-t/in-game-messages/issues/225)) ([13e934d](https://github.com/juissi-t/in-game-messages/commit/13e934d84e334cd0c8b931321d10aa0d97e7608c))
+* **deps:** bump requests from 2.30.0 to 2.31.0 ([#229](https://github.com/juissi-t/in-game-messages/issues/229)) ([d001a22](https://github.com/juissi-t/in-game-messages/commit/d001a22c9b86315ea8451d8307e580148a061e10))
+* **deps:** bump setuptools from 67.7.2 to 67.8.0 ([#228](https://github.com/juissi-t/in-game-messages/issues/228)) ([83e684a](https://github.com/juissi-t/in-game-messages/commit/83e684a75daf1f3926304a678203c0aeeec3ca65))
+* **deps:** bump types-requests from 2.29.0.0 to 2.30.0.0 ([#224](https://github.com/juissi-t/in-game-messages/issues/224)) ([76b23b2](https://github.com/juissi-t/in-game-messages/commit/76b23b2d6967eba44dce8306e182863534fbefb5))
+* **deps:** bump types-requests from 2.30.0.0 to 2.31.0.1 ([#230](https://github.com/juissi-t/in-game-messages/issues/230)) ([3343acd](https://github.com/juissi-t/in-game-messages/commit/3343acd8adaab5c1e9b3b2d7bd21dcd6bc869d34))
+
 ## [0.3.7](https://github.com/juissi-t/in-game-messages/compare/v0.3.6...v0.3.7) (2023-05-03)
 
 

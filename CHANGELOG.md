@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.3.9](https://github.com/juissi-t/in-game-messages/compare/v0.3.8...v0.3.9) (2023-08-22)
+
+
+### Bug Fixes
+
+* **deps:** bump black from 23.3.0 to 23.7.0 ([#237](https://github.com/juissi-t/in-game-messages/issues/237)) ([733bb01](https://github.com/juissi-t/in-game-messages/commit/733bb019529382de51bb27f5089bbac8b56168a7))
+* **deps:** bump flake8 from 6.0.0 to 6.1.0 ([#240](https://github.com/juissi-t/in-game-messages/issues/240)) ([eb68b2e](https://github.com/juissi-t/in-game-messages/commit/eb68b2ef5878c1b6a061b54530ee9848470414d1))
+* **deps:** bump mypy from 1.3.0 to 1.4.1 ([#234](https://github.com/juissi-t/in-game-messages/issues/234)) ([8b2ef1e](https://github.com/juissi-t/in-game-messages/commit/8b2ef1ef59a3008f0d1224b9833f4f8eef7b2800))
+* **deps:** bump mypy from 1.4.1 to 1.5.0 ([#243](https://github.com/juissi-t/in-game-messages/issues/243)) ([becd35c](https://github.com/juissi-t/in-game-messages/commit/becd35c48faf53f3a987417753b6a2d505ad800e))
+* **deps:** bump mypy from 1.5.0 to 1.5.1 ([#245](https://github.com/juissi-t/in-game-messages/issues/245)) ([69da487](https://github.com/juissi-t/in-game-messages/commit/69da4875b499311a7810ccaad946ae390ffaab7d))
+* **deps:** bump pylint from 2.17.4 to 2.17.5 ([#241](https://github.com/juissi-t/in-game-messages/issues/241)) ([e083aca](https://github.com/juissi-t/in-game-messages/commit/e083aca9adaa644fffa2f3bdeba9f1d5f69644e6))
+* **deps:** bump pytest from 7.3.1 to 7.3.2 ([#231](https://github.com/juissi-t/in-game-messages/issues/231)) ([dbac4e1](https://github.com/juissi-t/in-game-messages/commit/dbac4e1bfa27dc863a57519b8a49a9a6c8566973))
+* **deps:** bump pytest from 7.3.2 to 7.4.0 ([#235](https://github.com/juissi-t/in-game-messages/issues/235)) ([1eaf3ff](https://github.com/juissi-t/in-game-messages/commit/1eaf3ff3f05ad985d1cedc4cdfbf279f9650961d))
+* **deps:** bump python from 3.11.3-slim-bullseye to 3.11.4-slim-bullseye ([#232](https://github.com/juissi-t/in-game-messages/issues/232)) ([01f65ec](https://github.com/juissi-t/in-game-messages/commit/01f65ecbb869eb3e853f34b61152eddbea675e83))
+* **deps:** bump setuptools from 67.8.0 to 68.0.0 ([#236](https://github.com/juissi-t/in-game-messages/issues/236)) ([e50a45d](https://github.com/juissi-t/in-game-messages/commit/e50a45dc50640b6266ec0669e9a97bb99cacc025))
+* **deps:** bump setuptools from 68.0.0 to 68.1.2 ([#244](https://github.com/juissi-t/in-game-messages/issues/244)) ([c6312bc](https://github.com/juissi-t/in-game-messages/commit/c6312bcfdd29ff5f128c1b9ada83c424c8ffc402))
+* **deps:** bump shellingham from 1.5.1 to 1.5.3 ([#246](https://github.com/juissi-t/in-game-messages/issues/246)) ([d49e180](https://github.com/juissi-t/in-game-messages/commit/d49e180c95f6c51e3720e28ce0258c1163a2eb3d))
+* **deps:** bump types-requests from 2.31.0.1 to 2.31.0.2 ([#238](https://github.com/juissi-t/in-game-messages/issues/238)) ([96c5bf5](https://github.com/juissi-t/in-game-messages/commit/96c5bf5bb51cf490bada16fd1d546cc9e5317fc4))
+* **deps:** bump wheel from 0.40.0 to 0.41.0 ([#239](https://github.com/juissi-t/in-game-messages/issues/239)) ([de72f73](https://github.com/juissi-t/in-game-messages/commit/de72f73c18d4ca97d66e97c2fdc708f5bcd92c2b))
+* **deps:** bump wheel from 0.41.0 to 0.41.1 ([#242](https://github.com/juissi-t/in-game-messages/issues/242)) ([869b6ca](https://github.com/juissi-t/in-game-messages/commit/869b6cad1b81b8ce7722407424ab58f8b7a04bd0))
+
 ## [0.3.8](https://github.com/juissi-t/in-game-messages/compare/v0.3.7...v0.3.8) (2023-06-01)
 
 

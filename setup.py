@@ -41,7 +41,7 @@ setup(
         "setuptools==68.2.2",
         "requests==2.31.0",
         "slack-sdk==3.23.0",
-        "shellingham==1.5.3",
+        "shellingham==1.5.4",
         "wheel==0.41.3",
     ],
     extras_require={

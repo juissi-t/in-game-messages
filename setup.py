@@ -47,7 +47,7 @@ setup(
     extras_require={
         "dev": [
             "pytest==7.4.3",
-            "black==23.11.0",
+            "black==23.12.0",
             "pylint==3.0.2",
             "flake8==6.1.0",
             "mypy==1.7.1",

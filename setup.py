@@ -46,7 +46,7 @@ setup(
     ],
     extras_require={
         "dev": [
-            "pytest==7.4.3",
+            "pytest==7.4.4",
             "black==23.12.1",
             "pylint==3.0.3",
             "flake8==6.1.0",

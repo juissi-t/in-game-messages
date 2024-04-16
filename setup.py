@@ -38,7 +38,7 @@ setup(
     install_requires=[
         "py-cord==2.5.0",
         "typer==0.12.1",
-        "setuptools==69.2.0",
+        "setuptools==69.5.1",
         "requests==2.31.0",
         "slack-sdk==3.27.1",
         "shellingham==1.5.4",

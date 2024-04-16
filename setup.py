@@ -37,7 +37,7 @@ setup(
     package_data={},
     install_requires=[
         "py-cord==2.5.0",
-        "typer==0.12.1",
+        "typer==0.12.3",
         "setuptools==69.5.1",
         "requests==2.31.0",
         "slack-sdk==3.27.1",

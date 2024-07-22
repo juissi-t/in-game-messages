@@ -40,7 +40,7 @@ setup(
         "typer==0.12.3",
         "setuptools==70.0.0",
         "requests==2.32.3",
-        "slack-sdk==3.29.0",
+        "slack-sdk==3.31.0",
         "shellingham==1.5.4",
         "wheel==0.43.0",
     ],

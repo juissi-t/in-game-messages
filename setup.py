@@ -36,7 +36,7 @@ setup(
     package_dir={"": "."},
     package_data={},
     install_requires=[
-        "py-cord==2.5.0",
+        "py-cord==2.6.0",
         "typer==0.12.3",
         "setuptools==71.1.0",
         "requests==2.32.3",

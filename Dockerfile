@@ -1,4 +1,4 @@
-FROM python:3.12.4-slim-bullseye
+FROM python:3.12.5-slim-bullseye
 
 WORKDIR /build
 COPY in_game_messages ./in_game_messages/

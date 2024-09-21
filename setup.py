@@ -36,7 +36,7 @@ setup(
     package_dir={"": "."},
     package_data={},
     install_requires=[
-        "py-cord==2.6.0",
+        "py-cord==2.6.1",
         "typer==0.12.5",
         "setuptools==75.1.0",
         "requests==2.32.3",
@@ -51,7 +51,7 @@ setup(
             "pylint==3.2.7",
             "flake8==7.1.1",
             "mypy==1.11.2",
-            "types-requests==2.32.0.20240907",
+            "types-requests==2.32.0.20240914",
         ]
     },
 )

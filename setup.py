@@ -36,6 +36,7 @@ setup(
     package_dir={"": "."},
     package_data={},
     install_requires=[
+        "audioop-lts; python_version>='3.13'",
         "py-cord==2.6.1",
         "typer==0.12.5",
         "setuptools==75.1.0",

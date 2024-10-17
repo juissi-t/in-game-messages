@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/juissi-t/in-game-messages/compare/v0.4.0...v0.4.1) (2024-10-17)
+
+
+### Bug Fixes
+
+* Install audioop-lts package when using Python 3.13 ([#386](https://github.com/juissi-t/in-game-messages/issues/386)) ([d460f9e](https://github.com/juissi-t/in-game-messages/commit/d460f9e23d4aec1a465da54614ad5a9c7c853d82))
+
 ## [0.4.0](https://github.com/juissi-t/in-game-messages/compare/v0.3.9...v0.4.0) (2024-10-17)
 
 

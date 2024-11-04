@@ -39,7 +39,7 @@ setup(
         "audioop-lts; python_version>='3.13'",
         "py-cord==2.6.1",
         "typer==0.12.5",
-        "setuptools==75.2.0",
+        "setuptools==75.3.0",
         "requests==2.32.3",
         "slack-sdk==3.33.3",
         "shellingham==1.5.4",

@@ -37,7 +37,7 @@ jobs:
         run: |
           pip install -U .
           pip freeze > requirements.txt
-      - uses: juissi-t/python-lint-annotate@bfd6c91105371fedb8a7675f7cc172582fe3925e
+      - uses: juissi-t/python-lint-annotate@41614210dccd31e91b3f68db338b10569001af94
         with:
           python-version: "3.13"
           python-root-list: "./in_game_messages"

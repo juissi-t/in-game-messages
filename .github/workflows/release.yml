@@ -19,19 +19,19 @@ jobs:
 
     steps:
       - name: Release
-        uses: google-github-actions/release-please-action@514bc6cdae71484c998108f2136a8f5e4c62b9b9
+        uses: googleapis/release-please-action@v4.3.0
         id: release
         with:
           token: ${{ secrets.CR_PAT }}
           release-type: python
           package-name: in-game-messages
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5.0.0
         if: ${{ steps.release.outputs.release_created }}
 
       - name: Log in to the Container registry
         if: ${{ steps.release.outputs.release_created }}
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3.5.0
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
@@ -40,14 +40,23 @@ jobs:
       - name: Extract metadata (tags, labels) for Docker
         if: ${{ steps.release.outputs.release_created }}
         id: meta
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@v5.8.0
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3.6.0
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3.11.1
+        with:
+          platforms: linux/amd64,linux/arm64
+
       - name: Build and push Docker image
         if: ${{ steps.release.outputs.release_created }}
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v6.18.0
         with:
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}
           labels: ${{ steps.meta.outputs.labels }}
+          platforms: linux/amd64,linux/arm64

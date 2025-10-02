@@ -38,7 +38,7 @@ setup(
     install_requires=[
         "audioop-lts; python_version>='3.13'",
         "py-cord==2.6.1",
-        "typer==0.17.4",
+        "typer==0.19.2",
         "setuptools==80.9.0",
         "requests==2.32.4",
         "slack-sdk==3.36.0",

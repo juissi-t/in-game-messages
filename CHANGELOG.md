@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.5.1](https://github.com/juissi-t/in-game-messages/compare/v0.5.0...v0.5.1) (2025-10-02)
+
+
+### Bug Fixes
+
+* **deps:** bump black from 25.1.0 to 25.9.0 ([#444](https://github.com/juissi-t/in-game-messages/issues/444)) ([c82e613](https://github.com/juissi-t/in-game-messages/commit/c82e613b9ae0169888cdbb2f7746ba9915fec7d9))
+* **deps:** bump mypy from 1.18.1 to 1.18.2 ([#446](https://github.com/juissi-t/in-game-messages/issues/446)) ([a142476](https://github.com/juissi-t/in-game-messages/commit/a142476daac891326ec1f7454a6cb52a72cff21c))
+* **deps:** bump requests from 2.32.4 to 2.32.5 ([#447](https://github.com/juissi-t/in-game-messages/issues/447)) ([01eebf7](https://github.com/juissi-t/in-game-messages/commit/01eebf7ab519fb85b6545be2bd91c766d25e0cb1))
+* **deps:** bump typer from 0.17.4 to 0.19.2 ([#445](https://github.com/juissi-t/in-game-messages/issues/445)) ([7d9e24a](https://github.com/juissi-t/in-game-messages/commit/7d9e24a6c105cb304cb2c25e8f70319b418d4a8e))
+
 ## [0.5.0](https://github.com/juissi-t/in-game-messages/compare/v0.4.1...v0.5.0) (2025-09-18)
 
 

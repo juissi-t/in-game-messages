@@ -37,7 +37,7 @@ setup(
     package_data={},
     install_requires=[
         "audioop-lts; python_version>='3.13'",
-        "py-cord==2.6.1",
+        "py-cord==2.7.0",
         "typer==0.20.0",
         "setuptools==80.9.0",
         "requests==2.32.5",
